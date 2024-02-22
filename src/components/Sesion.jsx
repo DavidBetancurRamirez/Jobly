@@ -23,7 +23,6 @@ const Sesion = () => {
                                 : <SignUp /> }
                 </ContenedorC>
             </ContenedorP>
-            <a href="https://storyset.com/work" target="_blank">Work illustrations by Storyset</a>
         </ContenedorPrincipal>
     )
 }

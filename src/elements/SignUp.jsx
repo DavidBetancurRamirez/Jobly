@@ -15,6 +15,7 @@ const SignUp = () => {
     const [username, changeUsername] = useState("");
     const [email, changeEmail] = useState("");
     const [password, changePassword] = useState("");
+    const [password2, changePassword2] = useState("");
 
     return (
         <Formulario>
@@ -62,6 +63,18 @@ const SignUp = () => {
                     placeholder="Contraseña"
                     value={password}
                     onChange={(e) => changePassword(e.target.value)}
+                />
+            </ContInput>
+
+            <ContInput>
+                <RiLockPasswordFill />
+                <Input 
+                    required
+                    name = "password2"
+                    type="password"
+                    placeholder="Verificar contraseña"
+                    value={password2}
+                    onChange={(e) => changePassword2(e.target.value)}
                 />
             </ContInput>
 

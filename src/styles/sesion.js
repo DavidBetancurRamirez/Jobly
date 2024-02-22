@@ -10,14 +10,6 @@ export const ContenedorPrincipal = styled.div`
     align-items: center;
     width: 100vw;
     height: 100vh;
-
-    a {
-        position: absolute;
-        bottom: 0;
-        right: 0;
-        font-size: 0.8rem;
-        color: #000;
-    }
 `;
 
 export const Fondo = styled.div`
