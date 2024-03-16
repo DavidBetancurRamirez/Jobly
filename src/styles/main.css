@@ -2,7 +2,9 @@
   margin:0;
   padding:0;
   box-sizing: border-box;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Questrial', sans-serif;
+  font-weight: 400;
+  font-style: normal;
   font-size: 14px;
 
   @media (max-width: 550px) { font-size: 12px; }
