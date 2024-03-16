@@ -1,10 +1,9 @@
 const colores = {
-    azulOscuro: '#0C213C',
-    azulMedio: '#1262A7',
-    azulClaro: '#3D8DD2',
-    grisClaro: '#BDD3E5',
-    azulGris: '#19466D',
-    grisOscuro: '#94B0C9'
+    principal: '#283583',
+    oscuro: '#2A3158',
+    claro: '#8A96D7',
+    celeste: '#CFD6FF',
+    luminoso: '#ffffff'
 };
 
 export default colores;
