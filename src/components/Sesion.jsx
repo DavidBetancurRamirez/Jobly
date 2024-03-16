@@ -2,7 +2,9 @@ import { useState } from "react";
 
 import SignIn from "../elements/SignIn";
 import SignUp from "../elements/SignUp";
-import { ContenedorPrincipal, Fondo, ContenedorP, ContenedorH, Header, ContenedorC } from '../styles/sesion'
+// import Google from "../elements/Google";
+import { ContenedorPrincipal, ContenedorP, ContenedorH, Header, ContenedorC, Logo } from '../styles/sesion'
+import Jobly from "../images/jobly.png";
 
 
 const Sesion = () => {
@@ -11,7 +13,6 @@ const Sesion = () => {
 
     return (
         <ContenedorPrincipal>
-            <Fondo />
             <ContenedorP>
                 <ContenedorH>
                     <Header $inLogin={inLogin} onClick={() => changeInLogin(true)}>Iniciar Sesión</Header>
@@ -19,8 +20,10 @@ const Sesion = () => {
                 </ContenedorH>
 
                 <ContenedorC>
+                    <Logo src={Jobly} alt="Logo Jobly" />
                     {inLogin    ? <SignIn />
                                 : <SignUp /> }
+                    {/* <Google /> */}
                 </ContenedorC>
             </ContenedorP>
         </ContenedorPrincipal>

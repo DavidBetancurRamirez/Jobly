@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { pages } from "../functions/pages";
+import { pages } from "../utils/pages";
 
 import styled from "styled-components";
 import colores from "../styles/colores";

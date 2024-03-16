@@ -1,5 +1,5 @@
 import Menu from "../elements/Menu";
-import { pages } from "../functions/pages";
+import { pages } from "../utils/pages";
 
 import styled from "styled-components";
 import colores from "../styles/colores";

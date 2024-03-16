@@ -1,10 +1,9 @@
 import { useState } from "react";
 
-import Jobly from "../images/jobly.png";
 import { FaUserCircle } from "react-icons/fa";
 import { RiLockPasswordFill } from "react-icons/ri";
 
-import { Formulario, ContInput, Input, Boton, Logo } from "../styles/sesion";
+import { Formulario, ContInput, Input, Boton } from "../styles/sesion";
 
 
 const SignIn = () => {
@@ -14,8 +13,6 @@ const SignIn = () => {
 
     return (
         <Formulario>
-            <Logo src={Jobly} alt="Logo Jobly" />
-
             <ContInput>
                 <FaUserCircle />
                 <Input 

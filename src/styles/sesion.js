@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 import colores from './colores'
 
-import ImgFondo from '../images/FondoSesion.jpg'
-
 
 export const ContenedorPrincipal = styled.div`
     display: flex;
@@ -10,17 +8,6 @@ export const ContenedorPrincipal = styled.div`
     align-items: center;
     width: 100vw;
     height: 100vh;
-`;
-
-export const Fondo = styled.div`
-    background-image: url(${ImgFondo});
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    opacity: 0.6;
 `;
 
 export const ContenedorP = styled.div`
@@ -36,7 +23,7 @@ export const ContenedorH = styled.div`
 `;
 
 export const Header = styled.button`
-    background-color: ${props => (props.$inLogin ? colores.azulMedio : colores.azulOscuro)};
+    background-color: ${props => (props.$inLogin ? colores.principal : colores.oscuro)};
     cursor: ${props => (props.$inLogin ? "auto" : "pointer")};
     width: 50%;
     height: 100%;
@@ -50,7 +37,7 @@ export const Header = styled.button`
 `;
 
 export const ContenedorC = styled.div`
-    background-color: ${colores.azulMedio};
+    background-color: ${colores.principal};
     display: flex;
     flex-direction: column;
     padding: 20px;
@@ -60,7 +47,7 @@ export const ContenedorC = styled.div`
 `;
 
 export const Logo = styled.img`
-    width: 150px;
+    width: 140px;
     margin: 10px auto;
 
     @media (max-width: 550px) { 
@@ -124,7 +111,7 @@ export const Input = styled.input`
 `
 
 export const Boton = styled.button`
-    background: ${colores.azulOscuro};
+    background: ${colores.oscuro};
     border: none;
     border-radius: 10px;
     width: 180px;
@@ -135,38 +122,12 @@ export const Boton = styled.button`
     font-weight: bold;
     font-size: 1.1rem;
     cursor: pointer;
-    transition: 0.4s;
+    transition: all 1s ease;
 
-    &:hover { background: ${colores.azulGris}; }
+    &:hover { background: ${colores.claro}; }
 
     @media (max-width: 550px) {
         width: 150px;
         height: 40px;
-    }
-`
-
-export const Perfil = styled.article`
-    background-color: ${props => (props.$profile ? colores.azulGris : colores.grisOscuro)};
-    opacity: ${props => (props.$profile ? 1 : 0.5)};
-    border: 2px dashed ${colores.azulOscuro};
-    margin: 0px 15px 10px 15px;
-    width: 50%;
-    height: 200px;
-    cursor: pointer;
-
-    img {
-        width: 100%;
-        height: 90%;
-    }
-
-    p {
-        color: #fff;
-        text-align: center;
-        font-weight: bold;
-    }
-
-    @media (max-width: 550px) {
-        margin: 5px;
-        height: 150px;
     }
 `
