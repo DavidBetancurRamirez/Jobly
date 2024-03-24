@@ -2,20 +2,24 @@ import './styles/main.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-// import { GoogleOAuthProvider } from '@react-oauth/google';
 
-import Rutas from './Rutas.jsx'
+// import { GoogleOAuthProvider } from '@react-oauth/google';
+import { AuthProvider } from './context/AuthProvider.jsx';
+
+import { RouterProvider } from "react-router-dom";
+import { router } from './utils/routes.jsx'
 
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    {/* Contextos */}
-    {/* <GoogleOAuthProvider clientId="<your_client_id>"> */}
+    <React.StrictMode>
 
-      {/* Distintos URLs de la pagina */}
-      <Rutas />
+        {/* Contextos */}
+        <AuthProvider>
 
-    {/* </GoogleOAuthProvider> */}
+            {/* Distintos URLs de la pagina */}
+            <RouterProvider router={router} />
 
-  </React.StrictMode>,
+        </AuthProvider>
+
+    </React.StrictMode>,
 );
