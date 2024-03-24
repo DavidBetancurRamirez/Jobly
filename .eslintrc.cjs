@@ -14,5 +14,6 @@ module.exports = {
   rules: {
     'react/jsx-no-target-blank': 'off',
     "react/prop-types": [0],
+    "react-hooks/exhaustive-deps": 'off',
   },
 }
