@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 import colores from './colores'
 
+import ImgFondo from '../images/FondoSesion3.jpg'
+
 
 export const ContenedorPrincipal = styled.div`
     display: flex;
@@ -8,10 +10,12 @@ export const ContenedorPrincipal = styled.div`
     align-items: center;
     width: 100vw;
     height: 100vh;
+    background-image: url(${ImgFondo});
+    background-size: cover;
+    background-position: center center;
 `;
 
 export const ContenedorP = styled.div`
-    position: relative;
     margin: auto;
     max-width: 1000px;
     width: 95%;
@@ -122,9 +126,9 @@ export const Boton = styled.button`
     font-weight: bold;
     font-size: 1.1rem;
     cursor: pointer;
-    transition: all 1s ease;
+    transition: all 0.5s ease;
 
-    &:hover { background: ${colores.claro}; }
+    &:hover { background-color: ${colores.claro}; }
 
     @media (max-width: 550px) {
         width: 150px;
