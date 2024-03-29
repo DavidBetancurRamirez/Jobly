@@ -1,124 +1,185 @@
-import { useState } from "react";
-import { useAuth } from "../context/AuthProvider";
-import { Navigate, useNavigate } from "react-router-dom"
-
-import { Axios } from "axios";
-import { API_URL } from "../utils/constants";
+import axios from "../api/axios";
+import useAuth from "../hooks/useAuth";
+import { useState, useRef, useEffect } from "react";
+import validaciones from "../utils/validaciones";
+import { useNavigate, useLocation } from "react-router-dom"
 
 import Jobly from "../images/jobly.png";
-import { FaUserCircle } from "react-icons/fa";
-import { RiLockPasswordFill } from "react-icons/ri";
 import { MdEmail } from "react-icons/md";
-import { ContenedorPrincipal, ContenedorP, ContenedorH, Header, ContenedorC, Logo, Formulario, ContInput, Input, Boton } from '../styles/sesion'
+import { FaUserCircle, FaEye, FaEyeSlash  } from "react-icons/fa";
+import { Fondo, CPrincipal, CHeader, Header, CContenido, Logo, Formulario, CInput, Input, Boton, CMantenerS, CError  } from '../styles/sesion'
 
 
 const Sesion = () => {
-    // Para saber en que pestaña se encuentra el usuario
-    const [inLogin, changeInLogin] = useState(true);
+    // where the user is located
+    const [inLogin, setInLogin] = useState(true);
+    
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [psw, setPsw] = useState("");
+    const [showPsw, setShowPsw] = useState(false);
+    const [psw2, setPsw2] = useState("");
+    const [showPsw2, setShowPsw2] = useState(false);
+    const [errMsg, setErrMsg] = useState("")
+    const [errPsw, setErrPsw] = useState(false)
+    const errRef = useRef()
 
-    const [username, changeUsername] = useState("");
-    const [email, changeEmail] = useState("");
-    const [password, changePassword] = useState("");
-    const [password2, changePassword2] = useState("");
-
-    const auth = useAuth()
+    const { setAuth, persist, setPersist } = useAuth()
     const navigate = useNavigate()
+    const location = useLocation()
+    const from = location.state?.from?.pathname || "/"
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
+
+        const [errorValidacion, err] = validaciones({inLogin, username, email, psw, psw2})
+
+        if (errorValidacion) {
+            setErrMsg(errorValidacion)
+            setErrPsw(err==="psw")
+            return;
+        }
 
         try {
-            const response = await Axios.post(`${API_URL}`)
-            
-            if (response.ok) {
-                console.log("Si dio")
-
-                const json = await response.json()
-
-                if (json.body.accessToken && json.body.refreshToken) {
-                    auth.saveUser(json)
-
-                    navigate("/")
-                }
+            if (inLogin) {
+                // Iniciar sesion
+                const response = await axios.post(
+                    '/users', 
+                    //JSON.stringify({email, psw})
+                    JSON.stringify({email, password: psw})
+                );
+    
+                const name = response?.data?.name
+                const accessToken = response?.data?.accessToken
+    
+                setAuth({name, accessToken})
+                localStorage.setItem("persist", persist)
+                setErrMsg("")
+                setErrPsw(false)
+                navigate(from, { replace: true })
             } else {
-                console.log("No dio")
+                // Registro
+                setErrMsg("")
+                setErrPsw(false)
             }
+
         } catch (error) {
-            console.log(error)
+            if (!error?.response) {
+                setErrMsg("Sin respuesta del servidor")
+            } else if (error.response?.status === 400) {
+                setErrMsg("Se deben llenar todos los campos")
+            } else if (error.response?.status === 401) {
+                setErrMsg("Sin autorizacion")
+            } else {
+                setErrMsg("Error en sesion")
+            }
+            console.error(error)
+            console.log(errMsg)
+            errRef.current.focus()
         }
     }
 
     return (
-        !auth.isAuthenticated ?
-            <ContenedorPrincipal>
-                <ContenedorP>
-                    <ContenedorH>
-                        <Header $inLogin={inLogin} onClick={() => changeInLogin(true)}>Iniciar Sesión</Header>
-                        <Header $inLogin={!inLogin} onClick={() => changeInLogin(false)}>Registrarse</Header>
-                    </ContenedorH>
+        <Fondo>
+            <CPrincipal>
+                <CHeader>
+                    <Header $inLogin={inLogin} onClick={() => setInLogin(true)}>Iniciar Sesión</Header>
+                    <Header $inLogin={!inLogin} onClick={() => setInLogin(false)}>Registrarse</Header>
+                </CHeader>
 
-                    <ContenedorC>
-                        <Logo src={Jobly} alt="Logo Jobly" />
-                        <Formulario onSubmit={handleSubmit}>
-                            <ContInput>
+                <CContenido>
+                    <Logo src={Jobly} alt="Logo Jobly" />
+                    <Formulario onSubmit={handleSubmit}>
+                        {!inLogin &&
+                            <CInput>
                                 <FaUserCircle />
                                 <Input 
                                     required
-                                    name = "username"
                                     type="text"
+                                    id = "username"
                                     placeholder="Nombre Usuario"
                                     value={username}
-                                    onChange={(e) => changeUsername(e.target.value)}
+                                    onChange={(e) => setUsername(e.target.value)}
                                 />
-                            </ContInput>
+                            </CInput>
+                        }
 
-                            {!inLogin &&
-                                <ContInput>
-                                    <MdEmail />
-                                    <Input 
-                                        required
-                                        name = "email"
-                                        type="email"
-                                        placeholder="Correo Electronico"
-                                        value={email}
-                                        onChange={(e) => changeEmail(e.target.value)}
-                                    />
-                                </ContInput>
+                        <CInput>
+                            <MdEmail />
+                            <Input 
+                                required
+                                type="email"
+                                id = "email"
+                                placeholder="Correo Electronico"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                            />
+                        </CInput>
+
+                        <CInput>
+                            {showPsw
+                                ? <FaEye    className="click"
+                                            onClick={() => setShowPsw(!showPsw)} />
+                                : <FaEyeSlash   className="click"
+                                                onClick={() => setShowPsw(!showPsw)} />
                             }
+                            <Input 
+                                required
+                                type={showPsw ? "text" : "password"}
+                                id = "psw"
+                                placeholder="Contraseña"
+                                value={psw}
+                                onChange={(e) => setPsw(e.target.value)}
+                            />
+                        </CInput>
 
-                            <ContInput>
-                                <RiLockPasswordFill />
+                        {!inLogin &&
+                            <CInput>
+                                {showPsw2
+                                    ? <FaEye    className="click"
+                                                onClick={() => setShowPsw2(!showPsw2)} />
+                                    : <FaEyeSlash   className="click"
+                                                    onClick={() => setShowPsw2(!showPsw2)} />
+                                }
                                 <Input 
                                     required
-                                    name = "password"
-                                    type="password"
-                                    placeholder="Contraseña"
-                                    value={password}
-                                    onChange={(e) => changePassword(e.target.value)}
+                                    type={showPsw2 ? "text" : "password"}
+                                    id = "psw2"
+                                    placeholder="Verificar contraseña"
+                                    value={psw2}
+                                    onChange={(e) => setPsw2(e.target.value)}
                                 />
-                            </ContInput>
+                            </CInput>
+                        }
 
-                            {!inLogin &&
-                                <ContInput>
-                                    <RiLockPasswordFill />
-                                    <Input 
-                                        required
-                                        name = "password2"
-                                        type="password"
-                                        placeholder="Verificar contraseña"
-                                        value={password2}
-                                        onChange={(e) => changePassword2(e.target.value)}
-                                    />
-                                </ContInput>
+                        <CMantenerS>
+                            <input 
+                                type="checkbox" 
+                                id="persist"
+                                onChange={() => setPersist(!persist)}
+                                checked={persist}
+                            />
+                            <label htmlFor="persist">Mantener sesión iniciada</label>
+                        </CMantenerS>
+
+                        <CError ref={errRef} className={!errMsg && "offscreen"}>
+                            {!errPsw
+                                ? errMsg
+                                : (
+                                    <ul>
+                                        {errMsg.map((mensaje, i) => (
+                                            <li key={i}>{mensaje}</li>
+                                        ))}
+                                    </ul>
+                                ) 
                             }
+                        </CError>
 
-                            <Boton>Registrarse</Boton>
-                        </Formulario>
-                    </ContenedorC>
-                </ContenedorP>
-            </ContenedorPrincipal>
-        :
-            <Navigate to={"/"} />
+                        <Boton>Registrarse</Boton>
+                    </Formulario>
+                </CContenido>
+            </CPrincipal>
+        </Fondo>
     )
 }
 

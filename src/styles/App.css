@@ -8,14 +8,6 @@ img {
   max-width: 1900px;
   margin: 0rem auto;
 }
-body {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-
-body {
-  background-color: #f6f6f6;
-}
 
 nav {
   display: flex;

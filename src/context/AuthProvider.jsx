@@ -1,11 +1,59 @@
-import { useContext, createContext, useState, useEffect } from "react";
-import { API_URL } from "../utils/constants";
+import { createContext, useState } from "react";
+import axios from "../api/axios";
 
 
 const AuthContext = createContext()
 
-export const useAuth = () => useContext(AuthContext)
+export const AuthProvider = ({children}) => {
+    const [auth, setAuth] = useState({})
+    const [persist, setPersist] = useState(JSON.parse(localStorage.getItem("persist")) || false)
 
+    const signOut = async () => {
+        setAuth({})
+
+        try {
+            await axios("/logout", {
+                withCredentials: true
+            })
+        } catch (error) {
+            console.error(error)
+        }
+    }
+
+    const refreshToken = async () => {
+        try {
+            const response = await axios.get("/refresh")
+    
+            setAuth({
+                name: response.data.username,
+                accessToken: response.data.accessToken
+            })
+    
+            return response.data.accessToken
+        } catch (error) {
+            console.error(error)
+        }
+
+        return null;        
+    }
+
+    return (
+        <AuthContext.Provider value={{
+            auth,
+            persist,
+            refreshToken,
+            setAuth,
+            setPersist,
+            signOut
+        }}>
+            {children}
+        </AuthContext.Provider>
+    )
+}
+
+export default AuthContext;
+
+/*
 export const AuthProvider = ({children}) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [accessToken, setAccessToken] = useState("")
@@ -44,7 +92,7 @@ export const AuthProvider = ({children}) => {
         }
     }
 
-    const getUserInfo = async (refreshToken) => {
+    const getUserInfo = async (accessToken) => {
         try {
             // Cambiar por axios
             const response = await fetch(`${API_URL}/user`, {
@@ -119,7 +167,7 @@ export const AuthProvider = ({children}) => {
 
         if (!token) return null
         
-        const { refreshToken } = JSON.parse()
+        const { refreshToken } = JSON.parse(token)
         return refreshToken
     }
 
@@ -165,3 +213,4 @@ export const AuthProvider = ({children}) => {
         </AuthContext.Provider>
     )
 }
+*/
