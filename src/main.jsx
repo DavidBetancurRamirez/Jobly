@@ -2,15 +2,50 @@ import './styles/main.css'
 
 import React from 'react'
 import ReactDOM from 'react-dom/client'
+import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 
-import Rutas from './Rutas.jsx'
+import { AuthProvider } from './context/AuthProvider.jsx';
 
+import App from './components/App.jsx';
+import Sesion from './components/Sesion.jsx';
+import Loader from './elements/Loader.jsx';
+import RequiereAuth from './elements/RequiereAuth.jsx';
+import PersistLogin from './elements/PersistLogin.jsx';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// eslint-disable-next-line no-undef
+if (process.env.NODE_ENV === 'production') {
+    disableReactDevTools();
+}
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
+    <React.StrictMode>
 
-    {/* Distintos URLs de la pagina */}
-    <Rutas />
+        {/* Contextos */}
+        <AuthProvider>
 
-  </React.StrictMode>,
+            {/* URLs de la app */}
+            <BrowserRouter>
+                <Routes>
+                    <Route element={<PersistLogin />}>
+                        {/* Rutas publicas */}
+                        <Route path='/' element={<App />} />
+                        <Route path='/sesion' element={<Sesion />} />
+                        <Route path='/unauthorized' element={<div>No esta autorizado</div>} />
+
+                        {/* Rutas protegidas */}
+                        <Route element={<RequiereAuth />}>
+                            <Route path='/loader' element={<Loader />} />
+                        </Route>
+
+                        {/* Ruta no encontrada */}
+                        <Route path='*' element={<div>Error 404</div>} />
+                        
+                    </Route>
+                </Routes>
+            </BrowserRouter>
+
+        </AuthProvider>
+
+    </React.StrictMode>,
 );
