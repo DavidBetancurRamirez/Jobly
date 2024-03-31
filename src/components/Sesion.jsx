@@ -33,10 +33,10 @@ const Sesion = () => {
         e.preventDefault();
 
         const [errorValidacion, err] = validaciones({inLogin, username, email, pwd, pwd2})
+        setErrPwd(err==="pwd")
 
         if (errorValidacion) {
             setErrMsg(errorValidacion)
-            setErrPwd(err==="pwd")
             errRef.current.focus()
             return;
         }
