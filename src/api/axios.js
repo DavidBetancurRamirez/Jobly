@@ -1,10 +1,9 @@
 import axios from "axios"
 
-const BASE_URL = 'https://6605b8abd92166b2e3c2a918.mockapi.io/'
+const BASE_URL = 'http://localhost:3500'
 
 export default axios.create({
-    baseURL: BASE_URL,
-    headers: { "Content-Type": "application/json" }
+    baseURL: BASE_URL
 });
 
 export const axiosPrivate =  axios.create({

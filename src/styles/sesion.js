@@ -109,6 +109,7 @@ export const Input = styled.input`
     outline: none;
     padding: 10px;
     width: 100%;
+    border-radius: 10px;
 `
 
 export const Boton = styled.button`
@@ -148,7 +149,8 @@ export const CError = styled.article`
     margin: 5px 0px;
     background-color: ${colores.oscuro};
     color: ${colores.celeste};
-    padding: 5px;
+    padding: 10px;
+    border-radius: 10px;
 
     ul {
         margin-left: 25px;
@@ -159,6 +161,4 @@ export const CError = styled.article`
             margin-bottom: 2px;
         }
     }
-
-    
 `

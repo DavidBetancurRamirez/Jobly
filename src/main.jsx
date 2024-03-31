@@ -27,10 +27,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             {/* URLs de la app */}
             <BrowserRouter>
                 <Routes>
+                    <Route path='/sesion' element={<Sesion />} />
                     <Route element={<PersistLogin />}>
                         {/* Rutas publicas */}
                         <Route path='/' element={<App />} />
-                        <Route path='/sesion' element={<Sesion />} />
                         <Route path='/unauthorized' element={<div>No esta autorizado</div>} />
 
                         {/* Rutas protegidas */}
@@ -40,7 +40,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
                         {/* Ruta no encontrada */}
                         <Route path='*' element={<div>Error 404</div>} />
-                        
                     </Route>
                 </Routes>
             </BrowserRouter>
