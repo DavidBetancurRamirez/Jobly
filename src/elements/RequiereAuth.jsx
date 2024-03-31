@@ -6,8 +6,10 @@ const RequiereAuth = () => {
     const { auth } = useAuth()
     const location = useLocation()
 
+    console.log(auth)
+
     return (
-        auth?.name
+        auth?.accessToken
             ? <Outlet />
             : <Navigate to="/sesion" state={{ from: location }} replace />
     )
@@ -21,7 +23,7 @@ export const RequiereRole = ({ allowedRoles }) => {
     return (
         auth?.roles?.find(role => allowedRoles?.includes(role))
             ? <Outlet />
-            : auth?.name
+            : auth?.accessToken
                 ? <Navigate to="/unauthorized" state={{ from: location }} replace />
                 : <Navigate to="/sesion" state={{ from: location }} replace />
     )

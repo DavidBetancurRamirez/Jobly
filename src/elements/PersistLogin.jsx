@@ -4,7 +4,7 @@ import useAuth from '../hooks/useAuth'
 import Loader from "./Loader" 
 
 const PersistLogin = () => {
-    const [isLoading, setIsLoading] = useState()
+    const [isLoading, setIsLoading] = useState(true)
     const { auth, persist, refreshToken } = useAuth()
 
     useEffect(() => {
@@ -20,10 +20,15 @@ const PersistLogin = () => {
             }
         }
 
-        !auth?.accessToken ?  verifyRefreshToken() : setIsLoading(false)
+        persist && !auth?.accessToken ?  verifyRefreshToken() : setIsLoading(false)
 
         return () => isMounted = false
     }, [])
+
+    useEffect(() => {
+        console.log(`isLoading: ${isLoading}`)
+        console.log(`aT: ${JSON.stringify(auth?.accessToken)}`)
+    }, [isLoading])
 
     return (
         !persist

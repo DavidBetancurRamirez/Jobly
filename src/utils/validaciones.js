@@ -14,12 +14,12 @@ export const validarEmail = ({ email }) => {
     return !emailRegex.test(email) && ["Email no valido", "email"];
 }
 
-export const validarPsw = ({ psw }) => {
-    const minPswLength = 8;
+export const validarPwd = ({ pwd }) => {
+    const minPwdLength = 8;
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*.,\-_]).{8,}$/;
 
-    const passwordValida =  psw.length >= minPswLength && 
-                            passwordRegex.test(psw);
+    const passwordValida =  pwd.length >= minPwdLength && 
+                            passwordRegex.test(pwd);
 
     const mensaje = [
         "La contraseña debe contener al menos:",
@@ -30,20 +30,23 @@ export const validarPsw = ({ psw }) => {
         "1 caracter especial"
     ]
 
-    return !passwordValida && [mensaje, "psw"];
+    return !passwordValida && [mensaje, "pwd"];
 }
 
-export const validarPswIguales = ({ psw, psw2 }) => {
-    return psw!==psw2 && ["Las contraseñas no coinciden", "psw iguales"];
+export const validarPwdIguales = ({ pwd, pwd2 }) => {
+    return pwd!==pwd2 && ["Las contraseñas no coinciden", "pwd iguales"];
 }
 
-const validaciones = ({inLogin, username, email, psw, psw2}) => {
+const validaciones = ({inLogin, username, email, pwd, pwd2}) => {
+    /* Mientras se cambia la validacion del backend de usuario a email
     const funcionesValidacion = inLogin 
-                                    ? [validarEmail, validarPsw]
-                                    : [validarUsername, validarEmail, validarPsw, validarPswIguales]
+                                    ? [validarEmail, validarPwd]
+                                    : [validarUsername, validarEmail, validarPwd, validarPwdIguales]
+                                    */
+    const funcionesValidacion = [validarUsername, validarPwd]
     
     for (const funcion of funcionesValidacion) {
-        const mensajeError = funcion({ username, email, psw, psw2 });
+        const mensajeError = funcion({ username, email, pwd, pwd2 });
 
         if (mensajeError) return mensajeError;
     }

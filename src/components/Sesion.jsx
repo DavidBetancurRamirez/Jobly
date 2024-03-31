@@ -1,6 +1,6 @@
-import axios from "../api/axios";
 import useAuth from "../hooks/useAuth";
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
+import { axiosPrivate } from "../api/axios";
 import validaciones from "../utils/validaciones";
 import { useNavigate, useLocation } from "react-router-dom"
 
@@ -16,12 +16,12 @@ const Sesion = () => {
     
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
-    const [psw, setPsw] = useState("");
-    const [showPsw, setShowPsw] = useState(false);
-    const [psw2, setPsw2] = useState("");
-    const [showPsw2, setShowPsw2] = useState(false);
+    const [pwd, setPwd] = useState("");
+    const [showpwd, setShowPwd] = useState(false);
+    const [pwd2, setPwd2] = useState("");
+    const [showpwd2, setShowPwd2] = useState(false);
     const [errMsg, setErrMsg] = useState("")
-    const [errPsw, setErrPsw] = useState(false)
+    const [errPwd, setErrPwd] = useState(false)
     const errRef = useRef()
 
     const { setAuth, persist, setPersist } = useAuth()
@@ -32,35 +32,34 @@ const Sesion = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        const [errorValidacion, err] = validaciones({inLogin, username, email, psw, psw2})
+        const [errorValidacion, err] = validaciones({inLogin, username, email, pwd, pwd2})
+        setErrPwd(err==="pwd")
 
         if (errorValidacion) {
             setErrMsg(errorValidacion)
-            setErrPsw(err==="psw")
+            errRef.current.focus()
             return;
         }
 
         try {
-            if (inLogin) {
-                // Iniciar sesion
-                const response = await axios.post(
-                    '/users', 
-                    //JSON.stringify({email, psw})
-                    JSON.stringify({email, password: psw})
-                );
+            const response = await axiosPrivate.post(
+                inLogin ? '/auth' : '/register',
+                JSON.stringify({ username, pwd })
+            );
+
+            if (response.data) {
+                const accessToken = response.data.accessToken
     
-                const name = response?.data?.name
-                const accessToken = response?.data?.accessToken
+                setAuth({ username, accessToken })
     
-                setAuth({name, accessToken})
                 localStorage.setItem("persist", persist)
+    
                 setErrMsg("")
-                setErrPsw(false)
+                setErrPwd(false)
                 navigate(from, { replace: true })
             } else {
-                // Registro
-                setErrMsg("")
-                setErrPsw(false)
+                setErrMsg("Hubo un error, intentalo de nuevo mas tarde")
+                errRef.current.focus()
             }
 
         } catch (error) {
@@ -69,12 +68,13 @@ const Sesion = () => {
             } else if (error.response?.status === 400) {
                 setErrMsg("Se deben llenar todos los campos")
             } else if (error.response?.status === 401) {
-                setErrMsg("Sin autorizacion")
+                setErrMsg("Usuario y/o contraseña incorrectos")
+            } else if (error.response?.status === 409) {
+                setErrMsg("Usuario ya existente")
             } else {
-                setErrMsg("Error en sesion")
+                setErrMsg("Error en la sesión")
             }
             console.error(error)
-            console.log(errMsg)
             errRef.current.focus()
         }
     }
@@ -90,7 +90,7 @@ const Sesion = () => {
                 <CContenido>
                     <Logo src={Jobly} alt="Logo Jobly" />
                     <Formulario onSubmit={handleSubmit}>
-                        {!inLogin &&
+                        
                             <CInput>
                                 <FaUserCircle />
                                 <Input 
@@ -102,8 +102,9 @@ const Sesion = () => {
                                     onChange={(e) => setUsername(e.target.value)}
                                 />
                             </CInput>
-                        }
-
+                        
+                        {/* Se debe hacer con el email, pero el back esta con usuario, entonces por ahora se oculta email */}
+{!inLogin &&
                         <CInput>
                             <MdEmail />
                             <Input 
@@ -115,39 +116,40 @@ const Sesion = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </CInput>
+}
 
                         <CInput>
-                            {showPsw
+                            {showpwd
                                 ? <FaEye    className="click"
-                                            onClick={() => setShowPsw(!showPsw)} />
+                                            onClick={() => setShowPwd(!showpwd)} />
                                 : <FaEyeSlash   className="click"
-                                                onClick={() => setShowPsw(!showPsw)} />
+                                                onClick={() => setShowPwd(!showpwd)} />
                             }
                             <Input 
                                 required
-                                type={showPsw ? "text" : "password"}
-                                id = "psw"
+                                type={showpwd ? "text" : "password"}
+                                id = "pwd"
                                 placeholder="Contraseña"
-                                value={psw}
-                                onChange={(e) => setPsw(e.target.value)}
+                                value={pwd}
+                                onChange={(e) => setPwd(e.target.value)}
                             />
                         </CInput>
 
                         {!inLogin &&
                             <CInput>
-                                {showPsw2
+                                {showpwd2
                                     ? <FaEye    className="click"
-                                                onClick={() => setShowPsw2(!showPsw2)} />
+                                                onClick={() => setShowPwd2(!showpwd2)} />
                                     : <FaEyeSlash   className="click"
-                                                    onClick={() => setShowPsw2(!showPsw2)} />
+                                                    onClick={() => setShowPwd2(!showpwd2)} />
                                 }
                                 <Input 
                                     required
-                                    type={showPsw2 ? "text" : "password"}
-                                    id = "psw2"
+                                    type={showpwd2 ? "text" : "password"}
+                                    id = "pwd2"
                                     placeholder="Verificar contraseña"
-                                    value={psw2}
-                                    onChange={(e) => setPsw2(e.target.value)}
+                                    value={pwd2}
+                                    onChange={(e) => setPwd2(e.target.value)}
                                 />
                             </CInput>
                         }
@@ -163,7 +165,7 @@ const Sesion = () => {
                         </CMantenerS>
 
                         <CError ref={errRef} className={!errMsg && "offscreen"}>
-                            {!errPsw
+                            {!errPwd
                                 ? errMsg
                                 : (
                                     <ul>
