@@ -38,12 +38,9 @@ export const validarPwdIguales = ({ pwd, pwd2 }) => {
 }
 
 const validaciones = ({inLogin, username, email, pwd, pwd2}) => {
-    /* Mientras se cambia la validacion del backend de usuario a email
     const funcionesValidacion = inLogin 
-                                    ? [validarEmail, validarPwd]
+                                    ? [validarUsername, validarPwd]
                                     : [validarUsername, validarEmail, validarPwd, validarPwdIguales]
-                                    */
-    const funcionesValidacion = [validarUsername, validarPwd]
     
     for (const funcion of funcionesValidacion) {
         const mensajeError = funcion({ username, email, pwd, pwd2 });
@@ -51,7 +48,7 @@ const validaciones = ({inLogin, username, email, pwd, pwd2}) => {
         if (mensajeError) return mensajeError;
     }
     
-    return [undefined, undefined]; // Si todas las validaciones son exitosas
+    return [undefined, "Validacion exitosa"]; // Si todas las validaciones son exitosas
 }
 
 export default validaciones
