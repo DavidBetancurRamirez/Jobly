@@ -4,9 +4,8 @@ import Home from "../elements/Home";
 import VideoSec from "../elements/VideoSec";
 import Footer from "../elements/Footer"
 import JobContainer from '../elements/JobContainer';
-import ApplicantContainer from '../elements/ApplicantContainer';
 
-function App() {
+function App() {  
   return (
     <div className="App">
       <Home/>
