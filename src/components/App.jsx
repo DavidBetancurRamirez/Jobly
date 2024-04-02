@@ -2,14 +2,15 @@
 import '../styles/App.css';
 import Home from "../elements/Home";
 import VideoSec from "../elements/VideoSec";
-import Footer from "../elements/Footer"
-import JobContainer from '../elements/JobContainer';
+import Footer from "../elements/Footer";
+import Navbar from "../elements/Navbar";
+
 
 function App() {  
   return (
     <div className="App">
+      <Navbar/>
       <Home/>
-      <JobContainer/>
       <VideoSec />
       <Footer/>
     </div>

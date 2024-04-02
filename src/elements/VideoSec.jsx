@@ -9,10 +9,10 @@ const VideoSec = () => {
                 {/* <img src={AboutBackground} alt="" /> */}
             </div>
             <div className="about-section-image-container">
-                <iframe width="560" height="315" src={`https://www.youtube.com/watch?v=awIa_HyQT9g&list=TLGGUSDdX7qrOgowNDAzMjAyNA`}  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                <iframe id="player" width="560" height="315" src={`https://www.youtube.com/watch?v=GR51MWK_o2M`}  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             </div>
             <div>
-                <h1 className="primary-heading">
+                <h1 className="secondary-heading">
                     Nuestra Oferta
                 </h1>
                 <p className="primary-text">

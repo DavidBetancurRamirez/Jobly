@@ -12,6 +12,8 @@ import Loader from './elements/Loader.jsx';
 import RequiereAuth from './elements/RequiereAuth.jsx';
 import PersistLogin from './elements/PersistLogin.jsx';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Estudiante from './components/Estudiante.jsx';
+import Main from './components/main.jsx'
 
 // eslint-disable-next-line no-undef
 if (process.env.NODE_ENV === 'production') {
@@ -28,10 +30,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <BrowserRouter>
                 <Routes>
                     <Route path='/sesion' element={<Sesion />} />
-                    <Route element={<PersistLogin />}>
+                    {/* <Route element={<PersistLogin />}> */}
                         {/* Rutas publicas */}
                         <Route path='/' element={<App />} />
                         <Route path='/unauthorized' element={<div>No esta autorizado</div>} />
+
+                        <Route path='/Estudiante' element={<Estudiante />} />
+                        <Route path='/main' element={<Main />} />
 
                         {/* Rutas protegidas */}
                         <Route element={<RequiereAuth />}>
@@ -40,7 +45,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
                         {/* Ruta no encontrada */}
                         <Route path='*' element={<div>Error 404</div>} />
-                    </Route>
+                    {/* </Route> */}
                 </Routes>
             </BrowserRouter>
 
