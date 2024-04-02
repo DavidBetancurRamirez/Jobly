@@ -38,7 +38,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
                         {/* Rutas protegidas */}
                         <Route element={<RequiereAuth />}>
-                            <Route path='/loader' element={<h2>Esta pagina esta protegida, solo los que hallan iniciado sesion pueden verla</h2>} />
+                            <Route path='/protegida' element={<h2>Esta pagina esta protegida, solo los que hallan iniciado sesion pueden verla</h2>} />
                         </Route>
 
                         {/* Ruta no encontrada */}
