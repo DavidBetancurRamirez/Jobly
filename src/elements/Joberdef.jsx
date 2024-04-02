@@ -3,7 +3,7 @@ import '../styles/App.css';
 
 const Joberdef = () => {
   return (
-    <div className="page-container">
+    <div className="page-container-2">
         <div className="secondary-heading">
             Jober
         </div>

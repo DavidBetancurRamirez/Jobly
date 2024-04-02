@@ -256,11 +256,6 @@ nav {
   display: flex;
 }
 
-.col {
-  flex: 0.4;
-  padding: 15px;
-}
-
 .userPFP {
   max-width: 100%;
   height: 100px; /* Maintain aspect ratio */
@@ -284,10 +279,25 @@ nav {
   width: 80%;
 }
 
+.page-container-2 {
+  padding: 20px;
+  margin: 20px 80px;
+  
+}
+/*-- Para la matriz de flipcards --*/
 .page-container {
-  margin: 50px auto;
-  width: 80%;
-  max-width: 960px;
+  display:table;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+  margin: 50px 80px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacio entre las tarjetas verticalmente */
+  padding: 15px;
 }
 
 .secondary-heading {
@@ -303,6 +313,69 @@ nav {
   color: #666;
 }
 
+.card-container {
+  perspective: 1000px;
+}
+
+.experiencia {
+  background-color: #A2A3E9;
+}
+
+.ingresos {
+  background-color: #CFD6FF;
+}
+
+.networking {
+  background-color: #E8EAED;
+}
+
+.card-title {
+  font-size: 1.5rem; /* Tamaño de fuente */
+  font-weight: bold; /* Negrita para destacar el título */
+  color: black; /* Color del texto */
+  margin-bottom: 0.5rem; /* Espacio debajo del título */
+  text-align: center; /* Centrar el texto */
+  padding: 0.25rem 0; /* Espaciado interno */
+  border-bottom: 2px solid black;
+}
+
+
+.aprende {
+  background-color: #8A96D7;
+}
+.front, .back {
+  height: 110px;
+  width: 25rem; /* Ancho flexible basado en el contenedor */ /* Centrado horizontal con margen superior */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  padding: 30px;
+}
+
+.grid-container {
+  display: grid;
+  width: 80%;
+  grid-template-columns: auto auto;
+  gap: 10px; /* Adjust the gap as needed */
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-item {
+  padding: 20px; /* Adjust padding as needed */
+  text-align: center;
+  align-items: center;
+  width: min-content;
+  display: flex;
+}
+
+.center-grid{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
 @media (max-width: 1000px) {
   .navbar-links-container a {

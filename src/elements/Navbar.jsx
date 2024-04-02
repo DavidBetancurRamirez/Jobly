@@ -38,11 +38,11 @@ const Navbar = () => {
                 <a>Jobly.</a>
             </div>
             <div className="navbar-links-container">
-                <a href="">Inicio</a>
+                <a href="/main">Inicio</a>
                 <a href="">Info</a>
                 <a href="">Empresas</a>
-                <a href="">Estudiantes</a>
-                <a href="">Login</a>
+                <a href="/Estudiante">Estudiantes</a>
+                <a href="/sesion">Login</a>
             </div>
             <div className="navbar-menu-container">
                 <HiOutlineBars3 onClick={() => setOpenMenu(true)} />

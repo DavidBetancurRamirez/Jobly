@@ -2,7 +2,7 @@ import '../styles/App.css';
 import React, { useState } from "react";
 import ReactCardFlip from "react-card-flip";
 
-const Experiencia = () => {
+const Ingresos = () => {
   const [isFlipped, setIsFlipped] = useState(false);
 
   const handleMouseEnter = () => {
@@ -17,22 +17,22 @@ const Experiencia = () => {
     <div className="flip-card-container">
       <ReactCardFlip isFlipped={isFlipped} flipDirection="vertical">
         <div
-          className="front experiencia"
+          className="front ingresos"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-         <h1 class="card-title"> Experiencia </h1>
+         <h1 class="card-title"> Ingresos </h1>
         </div>
         <div
-          className="back experiencia"
+          className="back ingresos"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <h1 class> A través de los trabajos de Jobly obtendrás experiencia en campos de tu interés, perfectos para tu CV. </h1>
+          <h1> Con Jobly podrás aumentar tus ingresos y monetizar tu tiempo libre.</h1>
         </div>
       </ReactCardFlip>
     </div>
   );
 };
 
-export default Experiencia;
+export default Ingresos;
