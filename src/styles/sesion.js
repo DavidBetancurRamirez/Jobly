@@ -162,3 +162,10 @@ export const CError = styled.article`
         }
     }
 `
+
+export const FPassword = styled.a`
+    margin-top: 10px;
+    color: ${colores.celeste};
+    text-decoration: underline;
+    opacity: 0.9;
+`
