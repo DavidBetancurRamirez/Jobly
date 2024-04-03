@@ -30,9 +30,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <BrowserRouter>
                 <Routes>
                     <Route path='/sesion' element={<Sesion />} />
-                    {/* <Route element={<PersistLogin />}> */}
+                    <Route element={<PersistLogin />}>
                         {/* Rutas publicas */}
-                        <Route path='/' element={<App />} />
+                        <Route path='/' element={<Main />} />
                         <Route path='/unauthorized' element={<div>No esta autorizado</div>} />
 
                         <Route path='/Estudiante' element={<Estudiante />} />
@@ -45,7 +45,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 
                         {/* Ruta no encontrada */}
                         <Route path='*' element={<div>Error 404</div>} />
-                    {/* </Route> */}
+                    </Route>
                 </Routes>
             </BrowserRouter>
 

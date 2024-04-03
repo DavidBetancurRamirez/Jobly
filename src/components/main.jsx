@@ -16,14 +16,14 @@ function Main() {
 
       </div>
 
-      <div class="countersection">
-        <div class="counter-col">
-          <div class="primary-text"><FastCounter stopAt={ 5000 } /></div>
-          <h1 class="primary-text">Estudiantes Registrados</h1>
+      <div className="countersection">
+        <div className="counter-col">
+          <div className="primary-text"><FastCounter stopAt={ 5000 } /></div>
+          <h1 className="primary-text">Estudiantes Registrados</h1>
         </div>
-        <div class="counter-col">
-          <div class ="primary-text"><FastCounter stopAt={100} /></div>
-          <h1 class="primary-text"> Empresas Registradas</h1>
+        <div className="counter-col">
+          <div className ="primary-text"><FastCounter stopAt={100} /></div>
+          <h1 className="primary-text"> Empresas Registradas</h1>
         </div>
       </div>
 

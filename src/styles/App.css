@@ -24,10 +24,10 @@ nav {
   background-color: white;
 }
 .nav-logo-container {
-  color: black;
-  font-family: serif;
-  font-size: 5.0rem;
+  color: white;
+  font-size: 2.5rem;
   font-weight: 700;
+  margin-left: 20px;
 }
 .img-bg {
   background-image: url('../images/fondomain.webp');
@@ -377,6 +377,22 @@ nav {
   align-items: center;
 }
 
+.video-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%; /* Proporción 16:9 */
+  position: relative;
+  height: 0;
+}
+
+.video-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
+
+
 @media (max-width: 1000px) {
   .navbar-links-container a {
     margin-right: 1rem;
@@ -394,7 +410,7 @@ nav {
   .nav-logo-container {
     text-decoration: none;
     color: white;
-    font-size: 1.6rem;
+    font-size: 5.0rem;
     font-weight: 600;
     max-width: 140px;
   }
@@ -418,8 +434,9 @@ nav {
   }
   .home-image-section,
   .about-section-image-container {
-    width: 100%;
+    width: 80%;
     max-width: 400px;
+    padding-left: 50px;
   }
   .primary-heading {
     text-align: center;
