@@ -14,23 +14,54 @@ nav {
   align-items: center;
   justify-content: space-between;
   min-height: 90px;
+  background-color: #283583;
 }
 .navbar-menu-container {
   display: none;
 }
 
+.white-bg{
+  background-color: white;
+}
 .nav-logo-container {
-  text-decoration: none;
-  color: black;
-  font-size: 2.0rem;
-  font-weight: 600;
-  max-width: 140px;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-left: 20px;
+}
+.img-bg {
+  background-image: url('../images/fondomain.webp');
+  background-size: cover;
+  background-position: center;
+  padding-top: 10%; /* Adjust as needed */
+}
+
+.countersection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.counter-col {
+  text-align: center;
+  font-weight: 800;
+  margin: 0 20px;
+}
+
+.countersection h2 {
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+.estud-container{
+  background-color: #283583;
 }
 
 .navbar-links-container a {
   margin-right: 3rem;
   text-decoration: none;
-  color:  #181717;
+  color:  white;
   font-size: 1.2rem;
   font-weight: 600;
 }
@@ -65,29 +96,30 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  margin-left: 50px;
 }
 .primary-heading {
   font-size: clamp(2rem, 5vw, 4rem);
-  color: #0c1868;
+  color: #ffffff;
   /* line-height: 5rem; */
   max-width: 600px;
 }
 .primary-text {
   font-size: clamp(1rem, 3vw, 1.5rem);
   max-width: 500px;
-  color: #6a6a6a;
+  color: #afbeff;
   margin: 1.5rem 0rem;
 }
 .secondary-button {
   padding: 1rem 2.5rem;
-  background-color: #3243ab;
+  background-color: #ffffff;
   outline: none;
   border: none;
   border-radius: 5rem;
   font-size: 1.1rem;
   cursor: pointer;
   font-weight: 600;
-  color: white;
+  color: #283583;
   transition: 0.2s;
   display: flex;
   align-items: center;
@@ -144,7 +176,7 @@ nav {
 }
 
 .footer-wrapper {
-  margin: 6rem 0rem;
+  margin: 6rem 6rem;
   display: flex;
   margin-top: 10rem;
 }
@@ -224,11 +256,6 @@ nav {
   display: flex;
 }
 
-.col {
-  flex: 0.4;
-  padding: 15px;
-}
-
 .userPFP {
   max-width: 100%;
   height: 100px; /* Maintain aspect ratio */
@@ -252,8 +279,118 @@ nav {
   width: 80%;
 }
 
+.page-container-2 {
+  padding: 20px;
+  margin: 20px 80px;
+  
+}
+/*-- Para la matriz de flipcards --*/
+.page-container {
+  display:table;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+  margin: 50px 80px;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacio entre las tarjetas verticalmente */
+  padding: 15px;
+}
+
+.secondary-heading {
+  font-size: 40px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #222;
+}
+
+.secondary-text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #666;
+}
+
+.card-container {
+  perspective: 1000px;
+}
+
+.experiencia {
+  background-color: #A2A3E9;
+}
+
+.ingresos {
+  background-color: #CFD6FF;
+}
+
+.networking {
+  background-color: #E8EAED;
+}
+
+.card-title {
+  font-size: 1.5rem; /* Tamaño de fuente */
+  font-weight: bold; /* Negrita para destacar el título */
+  color: black; /* Color del texto */
+  margin-bottom: 0.5rem; /* Espacio debajo del título */
+  text-align: center; /* Centrar el texto */
+  padding: 0.25rem 0; /* Espaciado interno */
+  border-bottom: 2px solid black;
+}
 
 
+.aprende {
+  background-color: #8A96D7;
+}
+.front, .back {
+  height: 110px;
+  width: 25rem; /* Ancho flexible basado en el contenedor */ /* Centrado horizontal con margen superior */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  padding: 30px;
+}
+
+.grid-container {
+  display: grid;
+  width: 80%;
+  grid-template-columns: auto auto;
+  gap: 10px; /* Adjust the gap as needed */
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-item {
+  padding: 20px; /* Adjust padding as needed */
+  text-align: center;
+  align-items: center;
+  width: min-content;
+  display: flex;
+}
+
+.center-grid{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.video-responsive {
+  overflow: hidden;
+  padding-bottom: 56.25%; /* Proporción 16:9 */
+  position: relative;
+  height: 0;
+}
+
+.video-responsive iframe {
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+}
 
 
 @media (max-width: 1000px) {
@@ -273,7 +410,7 @@ nav {
   .nav-logo-container {
     text-decoration: none;
     color: white;
-    font-size: 1.6rem;
+    font-size: 5.0rem;
     font-weight: 600;
     max-width: 140px;
   }
@@ -297,8 +434,9 @@ nav {
   }
   .home-image-section,
   .about-section-image-container {
-    width: 100%;
+    width: 80%;
     max-width: 400px;
+    padding-left: 50px;
   }
   .primary-heading {
     text-align: center;
