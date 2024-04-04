@@ -1,35 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import '../styles/App.css';
 
-function FastCounter({ stopAt }) {
-  const [count, setCount] = useState(0);
+const FastCounter = ({ limite}) => {
+    const [numero, setNumero] = useState(0);
 
-  useEffect(() => {
-    let counterInterval;
+    useEffect(() => {
+        const intervalo = setInterval(() => {
+            if (numero < limite) {
+                setNumero(prevNumero => prevNumero + 1);
+            } else {
+                clearInterval(intervalo);
+            }
+        }, 1);
 
-    const startCounter = () => {
-      counterInterval = setInterval(() => {
-        if (count < stopAt) {
-          setCount(prevCount => prevCount + 1);
-        } else {
-          clearInterval(counterInterval);
-        }
-      }, 15);
-    };
+        return () => clearInterval(intervalo);
+    }, [numero, limite]);
 
-    // Start the counter when the component mounts
-    startCounter();
-
-    // Clean up the interval when the component unmounts
-    return () => clearInterval(counterInterval);
-  }, [count, stopAt]);
-
-  return (
-    <div>
-      {count}
-    </div>
-  );
+    return <div>+ {numero}</div>;
 }
 
 export default FastCounter;
-

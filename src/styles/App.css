@@ -134,10 +134,12 @@ nav {
 }
 .about-section-container {
   margin-top: 20rem;
+  margin-left: 10px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow-y: hidden;
 }
 .about-background-image-container {
   position: absolute;
@@ -280,7 +282,6 @@ nav {
 }
 
 .page-container-2 {
-  padding: 20px;
   margin: 20px 80px;
   
 }
@@ -317,18 +318,6 @@ nav {
   perspective: 1000px;
 }
 
-.experiencia {
-  background-color: #A2A3E9;
-}
-
-.ingresos {
-  background-color: #CFD6FF;
-}
-
-.networking {
-  background-color: #E8EAED;
-}
-
 .card-title {
   font-size: 1.5rem; /* Tamaño de fuente */
   font-weight: bold; /* Negrita para destacar el título */
@@ -339,10 +328,6 @@ nav {
   border-bottom: 2px solid black;
 }
 
-
-.aprende {
-  background-color: #8A96D7;
-}
 .front, .back {
   height: 110px;
   width: 25rem; /* Ancho flexible basado en el contenedor */ /* Centrado horizontal con margen superior */
@@ -355,43 +340,34 @@ nav {
 }
 
 .grid-container {
-  display: grid;
-  width: 80%;
-  grid-template-columns: auto auto;
-  gap: 10px; /* Adjust the gap as needed */
-  align-items: center;
-  justify-content: center;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .grid-item {
-  padding: 20px; /* Adjust padding as needed */
-  text-align: center;
-  align-items: center;
-  width: min-content;
-  display: flex;
+  margin: 10px auto;
 }
 
 .center-grid{
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Centrar horizontalmente */
   align-items: center;
 }
 
-.video-responsive {
-  overflow: hidden;
-  padding-bottom: 56.25%; /* Proporción 16:9 */
+.player-wrapper {
   position: relative;
-  height: 0;
+  padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
 }
 
-.video-responsive iframe {
-  left: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
+/* .react-player {
   position: absolute;
-}
+  top: 0;
+  left: 0;
+} */
 
+.react-player {
+  overflow-y: hidden;
+}
 
 @media (max-width: 1000px) {
   .navbar-links-container a {
@@ -410,7 +386,6 @@ nav {
   .nav-logo-container {
     text-decoration: none;
     color: white;
-    font-size: 5.0rem;
     font-weight: 600;
     max-width: 140px;
   }
@@ -456,6 +431,7 @@ nav {
     font-size: 1rem;
     padding: 0.8rem 2rem;
     cursor: pointer;
+    margin-bottom: 15px;
   }
   .about-section-container {
     margin-top: 5rem !important;

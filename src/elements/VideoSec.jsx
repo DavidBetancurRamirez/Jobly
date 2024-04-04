@@ -1,18 +1,28 @@
 import '../styles/App.css';
-// import AboutBackground from "../images/about-background.png";
-import PropTypes from "prop-types";
-import YoutubeEmbed from './YoutubeEmbed';
-
-//awIa_HyQT9g&list=TLGGUSDdX7qrOgowMzA0MjAyNA&t=3s
+import YoutubePlayer from 'react-player/youtube'
 
 const VideoSec = () => {
     return (
         <div className="about-section-container">
-            <meta name="referrer" content="no-referrer"></meta>
-            <div className="about-section-image-container">
-                <iframe id="player" width="560" height="315" src={`https://www.youtube.com/embed/TLGGUSDdX7qrOgowMzA0MjAyNA`}  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-            </div>
-            <YoutubeEmbed embedId="TLGGUSDdX7qrOgowMzA0MjAyNA"/>
+            {/* <div className='player-wrapper'>
+                <YoutubePlayer
+                    className='react-player'
+                    url='https://www.youtube.com/watch?v=awIa_HyQT9g'
+                    width='100%'
+                    height='100%'
+                    loop
+                    muted
+                    playing
+                    controls
+                />
+            </div> */}
+            <YoutubePlayer
+                url='https://www.youtube.com/watch?v=awIa_HyQT9g'
+                loop
+                muted
+                playing
+                controls
+            />
             <div>
                 <h1 className="secondary-heading">
                     Nuestra Oferta

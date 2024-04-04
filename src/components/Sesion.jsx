@@ -6,8 +6,8 @@ import { useNavigate, useLocation } from "react-router-dom"
 
 import Jobly from "../images/jobly.png";
 import { MdEmail } from "react-icons/md";
-import { FaUserCircle, FaEye, FaEyeSlash  } from "react-icons/fa";
-import { Fondo, CPrincipal, CHeader, Header, CContenido, Logo, Formulario, CInput, Input, Boton, CMantenerS, CError, FPassword  } from '../styles/sesion'
+import { FaUserCircle, FaEye, FaEyeSlash, FaArrowCircleLeft  } from "react-icons/fa";
+import { Fondo, CPrincipal, CHeader, Header, CContenido, Logo, Formulario, CInput, Input, CMantenerS, CError, Boton, CFooter, BRegresar  } from '../styles/sesion'
 
 
 const Sesion = () => {
@@ -56,7 +56,7 @@ const Sesion = () => {
     
                 setErrMsg("")
                 setErrPwd(false)
-                navigate(from, { replace: true })
+                regresar()
             } else {
                 setErrMsg("Hubo un error, intentalo de nuevo mas tarde")
                 errRef.current.focus()
@@ -77,6 +77,10 @@ const Sesion = () => {
             console.error(error)
             errRef.current.focus()
         }
+    }
+
+    const regresar = () => {
+        navigate(from, { replace: true })
     }
 
     return (
@@ -177,11 +181,20 @@ const Sesion = () => {
                             }
                         </CError>
 
-                        <Boton>Registrarse</Boton>
+                        <Boton type="submit">{inLogin ? "Iniciar sesión" : "Registrarse"}</Boton>
 
-                        {inLogin &&
-                            <FPassword href="/recuperar-contraseña">¿Olvidaste la contraseña?</FPassword>
-                        }
+                        <hr />
+
+                        <CFooter $orden={inLogin}>
+                            {inLogin &&
+                                <a href="/recuperar-contraseña">¿Olvidaste la contraseña?</a>
+                            }
+
+                            <BRegresar onClick={() => regresar()}>
+                                <FaArrowCircleLeft />Regresar
+                            </BRegresar>
+                        </CFooter>
+
                     </Formulario>
                 </CContenido>
             </CPrincipal>
