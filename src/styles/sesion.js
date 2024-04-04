@@ -72,6 +72,14 @@ export const Formulario = styled.form`
         margin-right: 10px;
     }
 
+    hr {
+        width: 80%;
+        height: 0;
+        border: medium none;
+        border-top: 1px dashed ${colores.celeste} !important;
+        margin: 10px auto;
+    }
+
     .offscreen { display: none; }
 
     @media (max-width: 550px) {
@@ -125,7 +133,7 @@ export const Boton = styled.button`
     cursor: pointer;
     transition: all 0.5s ease;
 
-    &:hover { background-color: ${colores.claro}; }
+    &:hover { color: ${colores.claro}; }
 
     @media (max-width: 550px) {
         width: 160px;
@@ -163,9 +171,33 @@ export const CError = styled.article`
     }
 `
 
-export const FPassword = styled.a`
-    margin-top: 10px;
-    color: ${colores.celeste};
-    text-decoration: underline;
-    opacity: 0.9;
+export const CFooter = styled.article`
+    display: flex;
+    align-items: center;
+    justify-content: ${props => (props.$orden ? "space-between" : "end")};
+    
+    a {
+        color: ${colores.celeste};
+        text-decoration: underline;
+        opacity: 0.9;
+    }
+`
+
+export const BRegresar = styled.button`
+    background: ${colores.oscuro};
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.5s ease;
+
+    svg {
+        margin-right: 5px;
+    }
+
+    &:hover { color: ${colores.claro}; }
 `

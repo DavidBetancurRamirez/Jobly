@@ -7,6 +7,8 @@ import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import AccountCircle from "@mui/icons-material/AccountCircle";
 import StoreFrontIcon from "@mui/icons-material/Storefront"
 import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency';
+import useAuth from '../hooks/useAuth'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
     const [openMenu, setOpenMenu] = useState(false);
@@ -32,17 +34,27 @@ const Navbar = () => {
             icon: <AccountCircle/>,
         },
     ]
+
+    const { auth, signOut } = useAuth();
+    const navigate = useNavigate()
+
     return (
         <nav>
-            <div className="nav-logo-container">
+            <div className="nav-logo-container" onClick={() => navigate("/")}>
                 Jobly
             </div>
             <div className="navbar-links-container">
-                <a href="/main">Inicio</a>
-                <a href="">Info</a>
-                <a href="">Empresas</a>
-                <a href="/Estudiante">Estudiantes</a>
-                <a href="/sesion">Login</a>
+                <a href="/">Inicio</a>
+                <a href="/info">Info</a>
+                <a href="/empresas">Empresas</a>
+                <a href="/estudiante">Estudiantes</a>
+                {auth?.accessToken
+                    ? <>
+                        <a href="/perfil">Mi Perfil</a>
+                        <button onClick={() => signOut()}>Cerrar sesion</button>
+                    </>
+                    : <a href="/sesion">Login</a> 
+                }
             </div>
             <div className="navbar-menu-container">
                 <HiOutlineBars3 onClick={() => setOpenMenu(true)} />

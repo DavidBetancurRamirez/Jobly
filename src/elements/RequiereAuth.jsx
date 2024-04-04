@@ -15,6 +15,8 @@ const RequiereAuth = () => {
     )
 }
 
+export default RequiereAuth;
+
 // Verificar si tiene el rol necesario para acceder
 export const RequiereRole = ({ allowedRoles }) => {
     const { auth } = useAuth()
@@ -28,5 +30,3 @@ export const RequiereRole = ({ allowedRoles }) => {
                 : <Navigate to="/sesion" state={{ from: location }} replace />
     )
 }
-
-export default RequiereAuth;
