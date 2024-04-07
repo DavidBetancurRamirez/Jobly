@@ -41,7 +41,7 @@ const Navbar = () => {
     return (
         <nav>
             <div className="nav-logo-container" onClick={() => navigate("/")}>
-                Jobly
+                Jobly.
             </div>
             <div className="navbar-links-container">
                 <a href="/">Inicio</a>

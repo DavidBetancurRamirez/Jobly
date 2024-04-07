@@ -28,6 +28,7 @@ nav {
   font-size: 2.5rem;
   font-weight: 700;
   margin-left: 20px;
+  cursor: pointer;
 }
 .img-bg {
   background-image: url('../images/fondomain.webp');
@@ -177,40 +178,6 @@ nav {
   margin-right: 1rem;
 }
 
-.footer-wrapper {
-  margin: 6rem 6rem;
-  display: flex;
-  margin-top: 10rem;
-}
-.footer-logo-container {
-  max-width: 110px;
-}
-.footer-icons {
-  margin-top: 2.5rem;
-}
-.footer-icons svg {
-  font-size: 1.5rem;
-  margin-right: 1.25rem;
-  color: #585858;
-}
-
-.footer-section-two {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-}
-.footer-section-columns {
-  display: flex;
-  flex-direction: column;
-  min-width: 190px;
-}
-.footer-section-columns span {
-  margin: 0.25rem 0rem;
-  font-weight: 600;
-  color: #4c4c4c;
-  cursor: pointer;
-}
-
 
 /* CSS de las tarjetas de JOB */
 
@@ -314,38 +281,38 @@ nav {
   color: #666;
 }
 
-.card-container {
-  perspective: 1000px;
-}
 
 .card-title {
   font-size: 1.5rem; /* Tamaño de fuente */
   font-weight: bold; /* Negrita para destacar el título */
   color: black; /* Color del texto */
-  margin-bottom: 0.5rem; /* Espacio debajo del título */
   text-align: center; /* Centrar el texto */
   padding: 0.25rem 0; /* Espaciado interno */
   border-bottom: 2px solid black;
 }
 
 .front, .back {
-  height: 110px;
-  width: 25rem; /* Ancho flexible basado en el contenedor */ /* Centrado horizontal con margen superior */
+  height: 100px;
+  width: 300px; /* Ancho flexible basado en el contenedor */ /* Centrado horizontal con margen superior */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   border-radius: 15px;
-  padding: 30px;
+  padding: 20px;
+  cursor: pointer;
 }
 
 .grid-container {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  width: 90%;
 }
 
 .grid-item {
-  margin: 10px auto;
+  margin: 10px;
 }
 
 .center-grid{
@@ -358,12 +325,6 @@ nav {
   position: relative;
   padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
 }
-
-/* .react-player {
-  position: absolute;
-  top: 0;
-  left: 0;
-} */
 
 .react-player {
   overflow-y: hidden;
@@ -453,16 +414,6 @@ nav {
   }
   .about-section-image-container {
     margin-right: 0rem !important;
-  }
-  .footer-wrapper {
-    flex-direction: column;
-  }
-  .footer-section-two {
-    flex-direction: column;
-    margin-top: 2rem;
-  }
-  .footer-section-columns {
-    margin: 1rem 0rem;
   }
   .App {
     max-width: 95vw;
