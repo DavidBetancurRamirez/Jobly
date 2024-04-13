@@ -37,24 +37,6 @@ nav {
   padding-top: 10%; /* Adjust as needed */
 }
 
-.countersection {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.counter-col {
-  text-align: center;
-  font-weight: 800;
-  margin: 0 20px;
-}
-
-.countersection h2 {
-  margin-top: 10px;
-  font-size: 18px;
-}
-
 .estud-container{
   background-color: #283583;
 }
@@ -279,28 +261,6 @@ nav {
   font-size: 16px;
   line-height: 1.5;
   color: #666;
-}
-
-
-.card-title {
-  font-size: 1.5rem; /* Tamaño de fuente */
-  font-weight: bold; /* Negrita para destacar el título */
-  color: black; /* Color del texto */
-  text-align: center; /* Centrar el texto */
-  padding: 0.25rem 0; /* Espaciado interno */
-  border-bottom: 2px solid black;
-}
-
-.front, .back {
-  height: 100px;
-  width: 300px; /* Ancho flexible basado en el contenedor */ /* Centrado horizontal con margen superior */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 15px;
-  padding: 20px;
-  cursor: pointer;
 }
 
 .grid-container {

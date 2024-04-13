@@ -65,7 +65,9 @@ const Estudiante = () => {
 
             <div className="grid-container">
                 {tarjetas.map((tarjeta, i) => (
-                    <Tarjeta key={i} info={tarjeta} />
+                    <div className="grid-item" key={i}>
+                      <Tarjeta info={tarjeta} />
+                    </div>
                 ))}
             </div>
 
