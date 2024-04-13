@@ -3,7 +3,7 @@ import Home from "../elements/Home";
 import VideoSec from "../elements/VideoSec";
 import Footer from "../elements/Footer";
 import Navbar from "../elements/Navbar";
-import FastCounter from '../elements/FastCounter';
+import Contadores from '../elements/Contadores';
 
 
 const App = () => {
@@ -13,19 +13,14 @@ const App = () => {
 
           <div className="img-bg">
             <Home />
-            <VideoSec />
+            {/* <VideoSec /> */}
           </div>
 
-          <div className="countersection">
-            <div className="counter-col">
-              <div className="primary-text"><FastCounter limite={ 5000 } /></div>
-              <h1 className="primary-text">Estudiantes Registrados</h1>
-            </div>
-            <div className="counter-col">
-              <div className ="primary-text"><FastCounter limite={100} /></div>
-              <h1 className="primary-text"> Empresas Registradas</h1>
-            </div>
-          </div>
+          <Contadores 
+              estudiantes={5000}
+              empresas={100}
+              tiempo={3}
+          />
 
           <Footer />
         </div>
