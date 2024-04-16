@@ -1,6 +1,5 @@
 import useAuth from "../hooks/useAuth";
 import { useState, useRef } from "react";
-import { axiosPrivate } from "../api/axios";
 import validaciones from "../utils/validaciones";
 import { useNavigate, useLocation } from "react-router-dom"
 
@@ -24,7 +23,7 @@ const Sesion = () => {
     const [errPwd, setErrPwd] = useState(false)
     const errRef = useRef()
 
-    const { setAuth, persist, setPersist } = useAuth()
+    const { signIn, persist, setPersist } = useAuth()
     const navigate = useNavigate()
     const location = useLocation()
     const from = location.state?.from?.pathname || "/"
@@ -42,18 +41,14 @@ const Sesion = () => {
         }
 
         try {
-            const response = await axiosPrivate.post(
-                inLogin ? '/auth' : '/register',
-                JSON.stringify({ username, pwd })
-            );
+            const response = await signIn({
+                username,
+                pwd,
+                persist,
+                path: inLogin ? '/auth' : '/register'
+            })
 
-            if (response.data) {
-                const accessToken = response.data.accessToken
-    
-                setAuth({ username, accessToken })
-    
-                localStorage.setItem("persist", persist)
-    
+            if (response) {
                 setErrMsg("")
                 setErrPwd(false)
                 regresar()
@@ -108,7 +103,7 @@ const Sesion = () => {
                             </CInput>
                         
                         {/* Se debe hacer con el email, pero el back esta con usuario, entonces por ahora se oculta email */}
-{!inLogin &&
+                        {!inLogin &&
                         <CInput>
                             <MdEmail />
                             <Input 
@@ -120,7 +115,7 @@ const Sesion = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </CInput>
-}
+                        }
 
                         <CInput>
                             {showpwd

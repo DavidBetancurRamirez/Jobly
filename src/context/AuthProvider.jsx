@@ -4,10 +4,30 @@ import { axiosPrivate } from "../api/axios";
 
 const AuthContext = createContext()
 
-export const AuthProvider = ({children}) => {
+export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({})
     const storedPersist = localStorage.getItem("persist");
     const [persist, setPersist] = useState(storedPersist !== null ? JSON.parse(storedPersist) : true);
+
+    const signIn = async ({ username, pwd, persist, path}) => {
+        const response = await axiosPrivate.post(
+            path,
+            JSON.stringify({ username, pwd })
+        );
+
+        if (!response.data) return false;
+
+        const { accessToken, roles } = response.data
+        setAuth({ 
+            username, 
+            accessToken,
+            roles
+        })
+
+        localStorage.setItem("persist", persist)
+
+        return true;
+    }
 
     const signOut = async () => {
         setAuth({})
@@ -22,22 +42,22 @@ export const AuthProvider = ({children}) => {
     const refreshToken = async () => {
         try {
             const response = await axiosPrivate.get("/refresh")
-            const { username, accessToken } = response.data
+            const { username, accessToken, roles } = response.data
 
-            setAuth(prev => {
-                return {
-                    ...prev,
-                    username,
-                    accessToken: response.data.accessToken
-                }
+            setAuth({
+                username,
+                accessToken,
+                roles
             })
     
             return accessToken
         } catch (error) {
-            console.error(error)
+            if (error?.response?.status != 401) {
+                console.error(error)
+            }
         }
 
-        return null;        
+        return null;
     }
 
     return (
@@ -47,6 +67,7 @@ export const AuthProvider = ({children}) => {
             refreshToken,
             setAuth,
             setPersist,
+            signIn,
             signOut
         }}>
             {children}
