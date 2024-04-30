@@ -35,7 +35,7 @@ const Navbar = () => {
         },
     ]
 
-    const { auth, signOut } = useAuth();
+    // const { auth, signOut } = useAuth();
     const navigate = useNavigate()
 
     return (
