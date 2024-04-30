@@ -15,6 +15,11 @@ import Estudiante from './components/Estudiante.jsx';
 import RequiereAuth from './elements/RequiereAuth.jsx';
 import PersistLogin from './elements/PersistLogin.jsx';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Admin from './components/Admin.jsx';
+import Empresa from './components/Empresa.jsx';
+import InfoEmpresa from './components/InfoEmpresa.jsx';
+import PubTrabajo from './components/PubTrabajo.jsx';
+import PubEmpresa from './components/PubEmpresa.jsx';
 
 // eslint-disable-next-line no-undef
 if (process.env.NODE_ENV === 'production') {
@@ -36,9 +41,14 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                         <Route path='/' element={<App />} />
                         <Route path='/sesion' element={<Sesion />} />
                         <Route path='/perfil' element={<Perfil />} />
+                        <Route path='/admin' element={<Admin />} />
                         <Route path='/estudiante' element={<Estudiante />} />
-                        <Route path='/unauthorized' element={<div>No esta autorizado</div>} />
+                        <Route path='/empresa/id' element={<Empresa />} />
+                        <Route path='/formtrabajo/ide' element={<PubTrabajo />} />
+                        <Route path='/empresas' element={<InfoEmpresa />} />
+                        <Route path='/formempresa' element={<PubEmpresa />} />
 
+                        <Route path='/unauthorized' element={<div>No esta autorizado</div>} />
                         {/* Rutas protegidas */}
                         <Route element={<RequiereAuth />}>
                             <Route path='/protegida' element={<h2>Esta pagina esta protegida, solo los que hallan iniciado sesion pueden verla</h2>} />

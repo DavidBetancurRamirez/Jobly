@@ -1,6 +1,18 @@
 import '../styles/App.css';
 import YoutubePlayer from 'react-player/youtube'
 
+
+const info = {
+    medioTiempo: {
+      titulo: "Medio tiempo",
+      contenido: "Son ofertas laborales menores a 40 horas semanales. Por ejemplo: Community manager, Business developer, Setter, Asistente virtual, etc."
+    },
+    esporadicos: {
+      titulo: "Esporadicos",
+      contenido: "Son ofertas laborales eventuales, o por proyecto y tienen fecha finalización. Por ejemplo: Mesero, Staff de evento, Edición de video, Inventario, etc."
+    }
+  }
+
 const VideoSec = () => {
     return (
         <div className="about-section-container">
@@ -27,12 +39,8 @@ const VideoSec = () => {
                 <h1 className="secondary-heading">
                     Nuestra Oferta
                 </h1>
-                <p className="primary-text">
-                    Medio tiempo: Son ofertas laborales menores a 40 horas semanales.
-                </p>
-                <p className="primary-text">
-                    Son ofertas laborales eventuales, o por proyecto y tienen fecha finalización.
-                </p>
+                {/* <BtnDesplegable info={info.medioTiempo} />
+                <BtnDesplegable info={info.esporadicos} /> */}
             </div>
         </div>
     )

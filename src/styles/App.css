@@ -251,16 +251,23 @@ nav {
 }
 
 .secondary-heading {
+  margin-top: 5%;
+  margin-bottom: 1vh;
   font-size: 40px;
   font-weight: bold;
   margin-bottom: 10px;
   color: #222;
+  text-align: center;
 }
 
 .secondary-text {
   font-size: 16px;
   line-height: 1.5;
   color: #666;
+  margin-left: 8%;
+  margin-right: 8%;
+  margin-top: 4vh;
+  margin-bottom: 4vh;
 }
 
 .grid-container {
@@ -269,6 +276,15 @@ nav {
   justify-content: center;
   margin: auto;
   width: 90%;
+}
+
+.grid-container-2 {
+  display: flex;
+  flex-wrap: wrap; /* Keep this for multi-row layout if needed */
+  /* Change these properties: */
+  justify-content: center; /* Align items to the beginning */
+  margin: auto;
+  width: 65%;          /* Set width to fit content if needed */
 }
 
 .grid-item {
@@ -288,6 +304,10 @@ nav {
 
 .react-player {
   overflow-y: hidden;
+}
+
+.center{
+  justify-content: center;
 }
 
 @media (max-width: 1000px) {
