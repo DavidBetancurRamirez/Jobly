@@ -39,19 +39,19 @@ const Contenido = styled.article`
 `
 
 const BtnDesplegable = ({ info }) => {
-    const [open, setOpen] = useState(false)
+    const [open, setOpen] = useState(false);
 
     return (
         <Contenedor>
             <Titulo onClick={() => setOpen(!open)}>
                 <p>{info.titulo}</p>
-                <FaArrowCircleDown  />
+                <FaArrowCircleDown />
             </Titulo>
             {open &&
                 <Contenido>{info.contenido}</Contenido>
             }
         </Contenedor>
-    )
-}
+    );
+};
 
 export default BtnDesplegable

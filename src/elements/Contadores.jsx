@@ -21,8 +21,7 @@ const Registrados = styled.article`
         font-weight: bold;
     }
 
-    div { font-size: 2rem; }
-    p { font-size: 1.5rem; }
+    div { font-size: 4rem; }
 
     @media (max-width: 550px) {
         margin: 10px;

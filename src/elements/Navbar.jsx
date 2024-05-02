@@ -1,64 +1,103 @@
 import '../styles/App.css';
 import { useState } from "react";
+import styled from 'styled-components';
+import colores from '../styles/colores';
+import Foto from "../images/EstudianteBG.jpg"; 
+import { useNavigate } from 'react-router-dom';
 import { HiOutlineBars3 } from "react-icons/hi2";
-import { Box, Drawer, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, List } from "@mui/material";
-import HomeIcon from "@mui/icons-material/Home";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import AccountCircle from "@mui/icons-material/AccountCircle";
 import StoreFrontIcon from "@mui/icons-material/Storefront"
+import AccountCircle from "@mui/icons-material/AccountCircle";
 import ContactEmergencyIcon from '@mui/icons-material/ContactEmergency';
-import useAuth from '../hooks/useAuth'
-import { useNavigate } from 'react-router-dom'
+import { Box, Drawer, ListItem, ListItemButton, ListItemIcon, ListItemText, Divider, List } from "@mui/material";
+
+
+const Nav = styled.nav`
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 90px;
+    padding: 20px;
+    background-color: ${colores.principal};
+`
+const Logo = styled.section`
+    display: flex;
+    align-items: center;
+
+    article {
+        color: #fff;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 2.5rem;
+        margin-bottom: 5px;
+    }
+`
+const Links = styled.div`
+    display: flex;
+    margin-left: 20px;
+    
+    p {
+        color: #fff;
+        margin: 0 10px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: bold;
+    }
+`
+const Imagen = styled.section`
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid ${colores.claro};
+
+    img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+    }
+`
+
+
+const menuOptions = [
+    {
+        text: "Estudiantes",
+        icon: <ContactEmergencyIcon />,
+    },
+    {
+        text: "Empresas",
+        icon: <StoreFrontIcon />,
+    },
+    {
+        text: "Login",
+        icon: <AccountCircle/>,
+    },
+]
+
 
 const Navbar = () => {
     const [openMenu, setOpenMenu] = useState(false);
-    const menuOptions = [
-        {
-            text: "Inicio",
-            icon: <HomeIcon />,
-        },
-        {
-            text: "Estudiantes",
-            icon: <ContactEmergencyIcon />,
-        },
-        {
-            text: "Empresas",
-            icon: <StoreFrontIcon />,
-        },
-        {
-            text: "Info",
-            icon: <InfoOutlinedIcon />,
-        },
-        {
-            text: "Login",
-            icon: <AccountCircle/>,
-        },
-    ]
-
-    // const { auth, signOut } = useAuth();
+    
     const navigate = useNavigate()
 
     return (
-        <nav>
-            <div className="nav-logo-container" onClick={() => navigate("/")}>
-                Jobly.
-            </div>
-            <div className="navbar-links-container">
-                <a href="/">Inicio</a>
-                <a href="/info">Info</a>
-                <a href="/empresas">Empresas</a>
-                <a href="/estudiante">Estudiantes</a>
-                {auth?.accessToken
-                    ? <>
-                        <a href="/perfil">Mi Perfil</a>
-                        <button onClick={() => signOut()}>Cerrar sesion</button>
-                    </>
-                    : <a href="/sesion">Login</a> 
-                }
-            </div>
+        <Nav>
+            <Logo>
+                <article onClick={() => navigate("/")}>Jobly.</article>
+                <Links>
+                    <p onClick={() => navigate("/estudiantes")}>Estudiante</p>
+                    <p onClick={() => navigate("/empresas")}>Empresa</p>
+                </Links>
+            </Logo>
+
+            <Imagen>
+                <img src={Foto} alt='Foto de perfil' />
+            </Imagen>
+
             <div className="navbar-menu-container">
                 <HiOutlineBars3 onClick={() => setOpenMenu(true)} />
             </div>
+
             <Drawer open={openMenu} onClose={() => setOpenMenu(false)} anchor="right">
                 <Box
                     sx={{ width: 250 }}
@@ -79,7 +118,7 @@ const Navbar = () => {
                     <Divider />
                 </Box>
             </Drawer>
-        </nav>
+        </Nav>
     )
 }
 

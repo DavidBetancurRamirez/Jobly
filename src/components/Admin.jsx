@@ -1,6 +1,4 @@
-
-import React from 'react'
-import Navbar from '../elements/Navbar'
+import Layout from './Layout';
 import Empresac from '../elements/Empresac';
 
 //Esto debe venir del backend realmente
@@ -17,9 +15,7 @@ const empresas = [
 
 const Admin = () => {
     return (
-        <div>
-            <Navbar />
-
+        <Layout>
             <h1 className='secondary-heading'>
                 Empresas Registradas
             </h1>
@@ -34,13 +30,10 @@ const Admin = () => {
 
             <div className='center-grid'>
                 <a href="/formempresa">
-                <button className="secondary-button">
-                Añadir Empresa
-                </button>
+                    <button className="secondary-button">Añadir Empresa</button>
                 </a>
             </div>
-
-        </div>
+        </Layout>
     );
 };
 

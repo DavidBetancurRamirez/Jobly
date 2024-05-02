@@ -1,5 +1,5 @@
+import styled from 'styled-components';
 
-import React from 'react'
 
 const Titulo = styled.article`
     color: black;
@@ -39,7 +39,6 @@ const CardEmpresa = styled.div`
   }
 `;
 
-import styled from 'styled-components';
 
 const Empresac = ({ info }) => {
     return (

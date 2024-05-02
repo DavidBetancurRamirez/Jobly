@@ -1,8 +1,6 @@
 import '../styles/App.css';
-import Navbar from "../elements/Navbar";
-import Footer from "../elements/Footer";
+import Layout from './Layout';
 import Tarjeta from '../elements/Tarjeta';
-
 import { FiArrowRight } from "react-icons/fi";
 import EstudianteBG from "../images/EstudianteBG.jpg";
 
@@ -31,9 +29,7 @@ const tarjetas = [
 
 const Estudiante = () => {
     return (
-        <div className="Estudiante">
-            <Navbar />
-
+        <Layout>
             <div className="estud-container">
                 <div className="home-banner-container">
                     <div className="home-bannerImage-container" />
@@ -70,9 +66,7 @@ const Estudiante = () => {
                     </div>
                 ))}
             </div>
-
-            <Footer />
-        </div>
+        </Layout>
     )
 }
 

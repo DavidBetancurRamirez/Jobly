@@ -3,7 +3,7 @@ import { useState, useRef } from "react";
 import validaciones from "../utils/validaciones";
 import { useNavigate, useLocation } from "react-router-dom"
 
-import Jobly from "../images/jobly.png";
+// import Jobly from "../images/jobly.png";
 import { MdEmail } from "react-icons/md";
 import { FaUserCircle, FaEye, FaEyeSlash, FaArrowCircleLeft  } from "react-icons/fa";
 import { Fondo, CPrincipal, CHeader, Header, CContenido, Logo, Formulario, CInput, Input, CMantenerS, CError, Boton, CFooter, BRegresar  } from '../styles/sesion'
@@ -87,7 +87,7 @@ const Sesion = () => {
                 </CHeader>
 
                 <CContenido>
-                    <Logo src={Jobly} alt="Logo Jobly" />
+                    <Logo>Jobly.</Logo>
                     <Formulario onSubmit={handleSubmit}>
                         
                             <CInput>

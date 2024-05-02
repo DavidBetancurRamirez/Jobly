@@ -36,6 +36,7 @@ const LoaderStyle = styled.div`
     }
 `
 
+
 const Loader = () => {
     return (
         <Contenedor>

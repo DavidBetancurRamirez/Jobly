@@ -1,13 +1,11 @@
-import React from 'react'
-import Navbar from '../elements/Navbar'
+import Layout from './Layout'
 import FormTrabajo from '../elements/FormTrabajo'
 
 const PubTrabajo = () => {
   return (
-    <div>
-        <Navbar />
+    <Layout>
         <FormTrabajo />
-    </div>
+    </Layout>
   )
 }
 

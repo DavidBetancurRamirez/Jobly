@@ -1,13 +1,9 @@
 import '../styles/App.css';
-// import Navbar from "./Navbar";
-import BannerBackground from "../images/home-banner-background.png";
-import BannerImage from "../images/home-banner-image.png";
 import { FiArrowRight } from "react-icons/fi";
 
-const Home = () => {
+const HomeInfo = () => {
   return (
     <div className="home-container">
-      {/* <Navbar /> */}
       <div className="home-banner-container">
         <div className="home-text-section">
           <h1 className="primary-heading">
@@ -28,4 +24,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default HomeInfo

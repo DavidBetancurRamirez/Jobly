@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 
 // Reusing the styled components from your example for consistent styling

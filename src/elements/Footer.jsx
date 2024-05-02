@@ -1,7 +1,9 @@
 import styled from 'styled-components'
 import colores from '../styles/colores'
-import { FaInstagram, FaTiktok } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+import { rutasPublicas } from '../utils/rutas';
 import { AiOutlineLinkedin } from "react-icons/ai";
+import { FaInstagram, FaTiktok } from "react-icons/fa";
 
 
 const CPrincipal = styled.footer`
@@ -23,11 +25,6 @@ const CNombre = styled.section`
     font-weight: bold;
     font-size: 2.5rem;
     margin-bottom: 5px;
-  }
-
-  p {
-    // Aun no se esta cambiando
-    font-weight: lighter;
   }
 
   @media (max-width: 550px) {
@@ -97,6 +94,7 @@ const SColumna = styled.article`
   }
 `
 const Contactos = styled.article`
+  display: flex;
   margin-top: 15px;
 
   svg {
@@ -117,24 +115,6 @@ const Contactos = styled.article`
   }
 `
 
-const paginas = [
-  {
-    nombre: "Home",
-    url: "/"
-  },
-  {
-    nombre: "Estudiante",
-    url: "/estudiante"
-  },
-  {
-    nombre: "Empresa",
-    url: "/empresa"
-  },
-  {
-    nombre: "Blog",
-    url: "/blog"
-  }
-]
 
 const dudas = [
   {
@@ -146,15 +126,44 @@ const dudas = [
     url: "https://www.thejobly.com/_files/ugd/65010f_e4728011ccdb41e7986ec3dca699ed6e.pdf"
   }
 ]
-
 const contactenos = [
   {
     nombre: "Info@joblycolombia.com",
     url: "Info@joblycolombia.com"
   }
 ]
+const redes = [
+  { 
+    url: "https://www.instagram.com/thejobly",
+    element: <FaInstagram />
+  },
+  { 
+    url: "https://www.linkedin.com/company/thejobly",
+    element: <AiOutlineLinkedin />
+  },
+  { 
+    url: "https://www.tiktok.com/@the_jobly",
+    element: <FaTiktok />
+  }
+]
+
 
 const Footer = () => {
+  const paginas = [
+    {
+      nombre: "Home",
+      url: rutasPublicas.app.path
+    },
+    {
+      nombre: "Estudiante",
+      url: rutasPublicas.estudiantes.path
+    },
+    {
+      nombre: "Empresa",
+      url: rutasPublicas.empresas.path
+    }
+  ]
+
   return (
     <CPrincipal>
         <CNombre>
@@ -184,21 +193,34 @@ const Footer = () => {
 };
 
 const Columna = ({ titulo, links, contactenos=false }) => {
+  const navigate = useNavigate()
+
+  const handleClick = (url) => {
+    if (url.startsWith('http')) {
+      // Si es una URL externa, abre en una nueva pestaña
+      window.open(url, '_blank');
+    } else {
+      // Si es una URL interna, usa navigate de React Router
+      navigate(url);
+      
+      // Mueve la vista hacia arriba
+      window.scrollTo(0, 0);
+    }
+  };
+
   return (
     <SColumna $contactenos={contactenos}>
       <p>{titulo}</p>
       <ul>
         {links.map((link, i) => (
-          <a key={i} href={link.url}>
-            <li>{link.nombre}</li>
-          </a>
+          <li key={i} onClick={() => handleClick(link.url)}>{link.nombre}</li>
         ))}
 
         {contactenos &&
           <Contactos>
-            <a href='https://www.instagram.com/thejobly' target="_blank"><FaInstagram /></a>
-            <a href='https://www.linkedin.com/company/thejobly' target="_blank"><AiOutlineLinkedin /></a>
-            <a href='https://www.tiktok.com/@the_jobly' target="_blank"><FaTiktok /></a>
+            {redes.map((red, i) => (
+              <div key={i} onClick={() => handleClick(red.url)}>{red.element}</div>
+            ))}
           </Contactos>
         }
       </ul>
