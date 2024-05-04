@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import colores from '../styles/colores'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { rutasPublicas } from '../utils/rutas';
 import { AiOutlineLinkedin } from "react-icons/ai";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
@@ -10,7 +10,7 @@ const CPrincipal = styled.footer`
   background-color: ${colores.celeste};
   display: flex;
   justify-content: space-between;
-  margin-top: 25px;
+  margin-top: ${props => (props.$location=='/perfil' ? "auto" : "25px")};
   padding: 20px;
 
   @media (max-width: 550px) {
@@ -78,7 +78,7 @@ const SColumna = styled.article`
     }
   }
 
-  @media (max-width: 770px) {
+  @media (max-width: 790px) {
     margin-top: ${props => (props.$contactenos ? "10px" : "0px")};
   }
 
@@ -149,6 +149,8 @@ const redes = [
 
 
 const Footer = () => {
+  const location = useLocation()
+
   const paginas = [
     {
       nombre: "Home",
@@ -165,7 +167,7 @@ const Footer = () => {
   ]
 
   return (
-    <CPrincipal>
+    <CPrincipal $location={location.pathname}>
         <CNombre>
             <article>Jobly.</article>
             <p>© 2024 Jobly.</p>

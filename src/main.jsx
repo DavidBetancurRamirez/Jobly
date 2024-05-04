@@ -23,7 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             {/* URLs de la app */}
             <BrowserRouter>
                 <Routes>
-                    {/* <Route element={<PersistLogin />}> */}
+                    <Route element={<PersistLogin />}>
                     
                         {/* Rutas publicas  */}
                         {Object.keys(rutasPublicas).map((routeKey, index) => (
@@ -35,7 +35,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                         ))}
 
                         {/* Rutas protegidas */}
-                        {/* <Route element={<RequiereRole allowedRoles={[5150]} />}> */}
+                        <Route element={<RequiereRole allowedRoles={[5150]} />}>
                             {Object.keys(rutasProtegidas).map((routeKey, index) => (
                                 <Route
                                     key={index}
@@ -43,9 +43,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                                     element={rutasProtegidas[routeKey].element}
                                 />
                             ))}
-                        {/* </Route> */}
+                        </Route>
 
-                    {/* </Route> */}
+                    </Route>
                 </Routes>
             </BrowserRouter>
 
