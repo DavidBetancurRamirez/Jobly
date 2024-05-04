@@ -124,7 +124,7 @@ const Navbar = () => {
 
     const logout = () => {
         signOut()
-        navigate("/")
+        navigate("/sesion")
     };
 
     return (

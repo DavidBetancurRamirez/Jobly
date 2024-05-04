@@ -1,12 +1,13 @@
 import useAuth from "../hooks/useAuth";
 import { useState, useRef } from "react";
+import Regresar from "../elements/Regresar";
 import validaciones from "../utils/validaciones";
 import { useNavigate, useLocation } from "react-router-dom"
 
 // import Jobly from "../images/jobly.png";
 import { MdEmail } from "react-icons/md";
-import { FaUserCircle, FaEye, FaEyeSlash, FaArrowCircleLeft  } from "react-icons/fa";
-import { Fondo, CPrincipal, CHeader, Header, CContenido, Logo, Formulario, CInput, Input, CMantenerS, CError, Boton, CFooter, BRegresar  } from '../styles/sesion'
+import { FaUserCircle, FaEye, FaEyeSlash  } from "react-icons/fa";
+import { Fondo, CPrincipal, CHeader, Header, CContenido, Logo, Formulario, CInput, Input, CMantenerS, CError, Boton, CFooter  } from '../styles/sesion'
 
 
 const Sesion = () => {
@@ -185,9 +186,7 @@ const Sesion = () => {
                                 <a href="/recuperar-contraseña">¿Olvidaste la contraseña?</a>
                             }
 
-                            <BRegresar type="button" onClick={() => regresar()}>
-                                <FaArrowCircleLeft />Regresar
-                            </BRegresar>
+                            <Regresar replace={true} />
                         </CFooter>
 
                     </Formulario>
