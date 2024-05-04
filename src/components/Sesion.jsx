@@ -185,7 +185,7 @@ const Sesion = () => {
                                 <a href="/recuperar-contraseña">¿Olvidaste la contraseña?</a>
                             }
 
-                            <BRegresar onClick={() => regresar()}>
+                            <BRegresar type="button" onClick={() => regresar()}>
                                 <FaArrowCircleLeft />Regresar
                             </BRegresar>
                         </CFooter>
