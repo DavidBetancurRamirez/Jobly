@@ -1,4 +1,3 @@
-import '../styles/App.css';
 import { useState } from 'react'
 import ReactCardFlip from "react-card-flip";
 import styled from 'styled-components';

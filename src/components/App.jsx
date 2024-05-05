@@ -1,43 +1,50 @@
 import '../styles/App.css';
-import Home from "../elements/Home";
+import Layout from '../elements/Layout';
 import VideoSec from "../elements/VideoSec";
-import Footer from "../elements/Footer";
-import Navbar from "../elements/Navbar";
 import Contadores from '../elements/Contadores';
-import BtnDesplegable from '../elements/BtnDesplegable';
-
-const info = {
-  medioTiempo: {
-    titulo: "Medio tiempo",
-    contenido: "Son ofertas laborales menores a 40 horas semanales. Por ejemplo: Community manager, Business developer, Setter, Asistente virtual, etc."
-  },
-  esporadicos: {
-    titulo: "Esporadicos",
-    contenido: "Son ofertas laborales eventuales, o por proyecto y tienen fecha finalización. Por ejemplo: Mesero, Staff de evento, Edición de video, Inventario, etc."
-  }
-}
+import { BtnInfo } from './Empresa/Empresa';
+import { FiArrowRight } from "react-icons/fi";
 
 const App = () => {
     return (
-        <div className='white-bg'>
-          <Navbar />
+        <Layout>
 
           <div className="img-bg">
-            <Home />
-            <VideoSec />
+            <HomeInfo />
+            {/* <VideoSec /> */}
           </div>
 
-          <BtnDesplegable info={info.medioTiempo} />
-          <BtnDesplegable info={info.esporadicos} />
+          <BtnInfo />
 
           <Contadores 
               estudiantes={5000}
               empresas={100}
           />
-
-          <Footer />
-        </div>
+        </Layout>
     )
+}
+
+const HomeInfo = () => {
+  return (
+    <div className="home-container">
+      <div className="home-banner-container">
+        <div className="home-text-section">
+          <h1 className="primary-heading">
+            ¡Conecta con oportunidades
+            laborales!
+          </h1>
+          <p className="primary-text">
+            Sabemos que ganas no te faltan, pero conseguir un trabajo ideal no es fácil. Nosotros nos encargamos de conectarte con el lugar donde podrás aprender, experimentar, y generar ingresos extra.
+          </p>
+          <button className="secondary-button">
+            Registrate <FiArrowRight />{" "}
+          </button>
+        </div>
+        <div className="home-image-section">
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default App;

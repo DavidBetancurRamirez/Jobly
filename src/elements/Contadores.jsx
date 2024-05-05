@@ -1,8 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useInView } from 'react-intersection-observer';
-
 import styled from 'styled-components';
 import colores from '../styles/colores';
+import { useState, useEffect } from 'react';
+import { useInView } from 'react-intersection-observer';
 
 const Contenedor = styled.section`
     display: flex;
@@ -21,8 +20,7 @@ const Registrados = styled.article`
         font-weight: bold;
     }
 
-    div { font-size: 2rem; }
-    p { font-size: 1.5rem; }
+    div { font-size: 5rem; }
 
     @media (max-width: 550px) {
         margin: 10px;
@@ -38,19 +36,25 @@ const Contadores = ({ estudiantes, empresas, tiempo=3 }) => {
     const [ref, inView] = useInView({ threshold: 0 });
 
     useEffect(() => {
+        let interval;
+
         if (inView) {
-            const interval = setInterval(() => {
-              if (contador1 < estudiantes) {
-                setContador1((prevContador) => Math.min(prevContador + incremento1, estudiantes));
-              }
-              if (contador2 < empresas) {
-                setContador2((prevContador) => Math.min(prevContador + incremento2, empresas));
-              }
+            interval = setInterval(() => {
+                if (contador1 < estudiantes) {
+                    setContador1((prevContador) => Math.min(prevContador + incremento1, estudiantes));
+                }
+                if (contador2 < empresas) {
+                    setContador2((prevContador) => Math.min(prevContador + incremento2, empresas));
+                }
             }, 1000 / pasos);
-      
-            return () => clearInterval(interval);
-          }
-    }, [inView, contador1, contador2, incremento1, incremento2, estudiantes, empresas, pasos]);
+        } else {
+            // Para que cada vez que el contador se muestre en pantalla, se reinicie la animación
+            setContador1(0);
+            setContador2(0);
+        }
+        
+        return () => clearInterval(interval);
+    }, [inView]);
 
     return (
         <Contenedor ref={ref}>
