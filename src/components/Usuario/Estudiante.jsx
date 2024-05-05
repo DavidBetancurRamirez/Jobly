@@ -1,8 +1,7 @@
-import '../styles/App.css';
-import Layout from './Layout';
-import Tarjeta from '../elements/Tarjeta';
+import Layout from '../../elements/Layout';
 import { FiArrowRight } from "react-icons/fi";
-import EstudianteBG from "../images/EstudianteBG.jpg";
+import Tarjeta from '../../elements/Tarjeta';
+import EstudianteBG from "../../images/EstudianteBG.jpg";
 
 const tarjetas = [
     {

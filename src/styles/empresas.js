@@ -1,7 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-
-const Titulo = styled.article`
+export const Titulo = styled.article`
     color: black;
     font-size: 1.5rem;
     font-weight: bold;
@@ -9,7 +8,7 @@ const Titulo = styled.article`
     padding: 0.25rem 0;
     border-bottom: 2px solid black;
 `
-const CardEmpresa = styled.div`
+export const CardEmpresa = styled.div`
   /* Basic Card Styling */
   background-color: #fff;
   border-radius: 10px;
@@ -39,21 +38,11 @@ const CardEmpresa = styled.div`
   }
 `;
 
-
-const Empresac = ({ info }) => {
-    return (
-      <CardEmpresa>
-        <Titulo> {info.nombre} </Titulo>
-  
-        <div>
-          <h3> Total trabajos {info.trabajos} </h3>
-        </div>
-
-        <a href="/empresa/id">
-          <button className="secondary-button">Expandir</button>
-        </a>
-      </CardEmpresa>
-    );
-  };
-
-export default Empresac
+export const AltHeading = styled.h1`
+    /* Alt Heading Styling */
+    color: #333; /* Dark gray color */
+    font-size: 2.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 20px; /* Add space below heading */
+`;

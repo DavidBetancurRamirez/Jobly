@@ -1,13 +1,12 @@
 import { useLocation, useNavigate  } from 'react-router-dom'
 
-const useRegresar = (replace=false) => {
+const useRegresar = () => {
     const navigate = useNavigate()
     const location = useLocation()
-    const from = location.state?.from?.pathname || "/"
+    const from = location.state?.from?.pathname || -1
 
     const regresar = () => {
-        // navigate(from, {replace:replace})
-        navigate(from, { replace })
+        navigate(from)
     }
 
     return regresar

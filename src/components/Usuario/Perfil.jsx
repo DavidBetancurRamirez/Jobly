@@ -1,10 +1,9 @@
-import Layout from './Layout'
-import Foto from "../images/anonymous.png";
-import * as S from '../styles/perfil';
-
-import Google from '../images/google.png'
-import CaraFeliz from '../images/FotoPerfilPrueba.jpg'
+import * as S from '../../styles/perfil';
 import Rating from "@mui/material/Rating";
+import Layout from '../../elements/Layout';
+import Google from '../../images/google.png';
+import Foto from "../../images/anonymous.png";
+import CaraFeliz from '../../images/FotoPerfilPrueba.jpg';
 
 
 const Perfil = () => {

@@ -1,13 +1,12 @@
-import useAuth from "../hooks/useAuth";
+import useAuth from "../../hooks/useAuth";
 import { useState, useRef } from "react";
-import Regresar from "../elements/Regresar";
-import validaciones from "../utils/validaciones";
-import { useNavigate, useLocation } from "react-router-dom"
+import useRegresar from "../../hooks/useRegresar";
+import validaciones from "../../utils/validaciones";
+import Regresar from "../../elements/Regresar";
 
-// import Jobly from "../images/jobly.png";
 import { MdEmail } from "react-icons/md";
 import { FaUserCircle, FaEye, FaEyeSlash  } from "react-icons/fa";
-import { Fondo, CPrincipal, CHeader, Header, CContenido, Logo, Formulario, CInput, Input, CMantenerS, CError, Boton, CFooter  } from '../styles/sesion'
+import { Fondo, CPrincipal, CHeader, Header, CContenido, Logo, Formulario, CInput, Input, CMantenerS, CError, Boton, CFooter  } from '../../styles/sesion'
 
 
 const Sesion = () => {
@@ -25,9 +24,7 @@ const Sesion = () => {
     const errRef = useRef()
 
     const { signIn, persist, setPersist } = useAuth()
-    const navigate = useNavigate()
-    const location = useLocation()
-    const from = location.state?.from?.pathname || "/"
+    const regresar = useRegresar()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -73,10 +70,6 @@ const Sesion = () => {
             console.error(error)
             errRef.current.focus()
         }
-    }
-
-    const regresar = () => {
-        navigate(from, { replace: true })
     }
 
     return (
@@ -186,7 +179,7 @@ const Sesion = () => {
                                 <a href="/recuperar-contraseña">¿Olvidaste la contraseña?</a>
                             }
 
-                            <Regresar replace={true} />
+                            <Regresar />
                         </CFooter>
 
                     </Formulario>

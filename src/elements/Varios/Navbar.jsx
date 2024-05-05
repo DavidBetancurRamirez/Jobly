@@ -1,10 +1,9 @@
-import '../styles/App.css';
 import { useState } from 'react';
-import useAuth from '../hooks/useAuth';
+import useAuth from '../../hooks/useAuth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import colores from '../styles/colores';
-import Foto from "../images/anonymous.png"; 
+import colores from '../../styles/colores';
+import Foto from "../../images/anonymous.png"; 
 import { CiLogout } from "react-icons/ci";
 import { FaUserCircle  } from "react-icons/fa";
 
@@ -143,6 +142,12 @@ const Navbar = () => {
                         onClick={() => navigate("/empresas")}
                     >
                         Empresa
+                    </Link>
+                    <Link 
+                        $located={location.pathname=="/admin"}
+                        onClick={() => navigate("/admin")}
+                    >
+                        Admin
                     </Link>
                 </Links>
             </Logo>

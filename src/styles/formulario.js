@@ -1,7 +1,6 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
-// Reusing the styled components from your example for consistent styling
-const Titulo = styled.article`
+export const Titulo = styled.article`
     color: black;
     font-size: 1.5rem;
     font-weight: bold;
@@ -10,7 +9,7 @@ const Titulo = styled.article`
     border-bottom: 2px solid black;
 `;
 
-const FormContainer = styled.div`
+export const FormContainer = styled.div`
     background-color: #fff;
     border-radius: 10px;
     padding: 20px;
@@ -23,11 +22,9 @@ const FormContainer = styled.div`
     justify-content: space-between;
     align-items: center;
     text-align: center;
-
-    gap: 1rem;
 `;
 
-const InputField = styled.input`
+export const InputField = styled.input`
     width: 80%;
     padding: 10px;
     margin: 5px 0;
@@ -35,7 +32,7 @@ const InputField = styled.input`
     border: 1px solid #ddd;
 `;
 
-const Label = styled.label`
+export const Label = styled.label`
     display: block; /* Ensures the label takes up the full width */
     text-align: left;
     width: 80%;
@@ -46,7 +43,7 @@ const Label = styled.label`
     
 `;
 
-const TextArea = styled.textarea`
+export const TextArea = styled.textarea`
     width: 80%;
     padding: 10px;
     margin-bottom: 10px;
@@ -56,41 +53,23 @@ const TextArea = styled.textarea`
     resize: vertical; /* Allows the user to vertically resize the textarea */
 `;
 
-const SubmitButton = styled.input`
+export const Botones = styled.section`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+`
+
+export const SubmitButton = styled.input`
     background-color: #ddd;
     border: none;
     padding: 10px 20px;
     border-radius: 5px;
+    margin-left: 10px;
     cursor: pointer;
-    margin-top: 15px;
-
     transition: background-color 0.3s; /* Smooth transition for background color */
 
     &:hover {
         background-color: #3a92e4; /* Color changes when hovered */
     }
 `;
-
-const ServiceForm = () => {
-    return (
-        <FormContainer>
-            <Titulo>Inserta la información de la empresa </Titulo>
-
-            <Label htmlFor="name">Nombre</Label>
-            <InputField type="text" id="name" name="name" />
-
-            <Label htmlFor="Contactn">Contacto</Label>
-            <InputField type="text" id="Contactn" name="Contactn" />
-
-            <Label htmlFor="Contacti">Info Contacto</Label>
-            <InputField type="text" id="Contacti" name="Contacti" />
-
-            <Label htmlFor="description">Description</Label>
-            <TextArea id="description" name="description" />
-
-            <SubmitButton type="submit" value="Pulbicar" />
-        </FormContainer>
-    );
-};
-
-export default ServiceForm;

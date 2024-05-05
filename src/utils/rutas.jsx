@@ -1,22 +1,16 @@
-import Admin from '../components/Admin.jsx';
+import Admin from '../components/Admin/Admin.jsx';
 import App from '../components/App.jsx';
-import Empresa from '../components/Empresa.jsx';
-import EmpresaInfo from '../components/EmpresaInfo.jsx';
-import Error404 from '../components/Error404.jsx';
-import Estudiante from '../components/Estudiante.jsx';
-import Perfil from '../components/Perfil.jsx';
-import PubEmpresa from '../components/PubEmpresa.jsx';
-import PubTrabajo from '../components/PubTrabajo.jsx';
-import Recuperar from '../components/Recuperar.jsx';
-import Sesion from '../components/Sesion.jsx';
+import Empresa from '../components/Empresa/Empresa.jsx';
+import InfoEmpresa from '../components/Empresa/InfoEmpresa.jsx';
+import Error404 from '../elements/Varios/Error404.jsx';
+import Estudiante from '../components/Usuario/Estudiante.jsx';
+import Perfil from '../components/Usuario/Perfil.jsx';
+import FormEmpresa from '../components/Empresa/FormEmpresa.jsx';
+import FormTrabajo from '../components/Trabajo/FormTrabajo.jsx';
+import Recuperar from '../elements/Varios/Recuperar.jsx';
+import Sesion from '../components/Usuario/Sesion.jsx';
+import Unauthorized from '../elements/Varios/Unauthorized.jsx';
 
-
-// Paginas temporales
-const Unauthorized = () => {
-    return (
-        <div>No está autorizado</div>
-    )
-}
 
 // Objeto que contiene la información de las rutas
 export const rutasPublicas = {
@@ -61,14 +55,14 @@ export const rutasProtegidas = {
     },
     empresaID: {
         path: '/empresa/id',
-        element: <EmpresaInfo />
+        element: <InfoEmpresa />
     },
-    pubEmpresa: {
+    formEmpresa: {
         path: '/formempresa',
-        element: <PubEmpresa />
+        element: <FormEmpresa />
     },
-    pubTrabajo: {
-        path: '/formtrabajo/ide',
-        element: <PubTrabajo />
+    formTrabajo: {
+        path: '/formtrabajo',
+        element: <FormTrabajo />
     },
 };

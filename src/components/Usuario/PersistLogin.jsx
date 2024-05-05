@@ -1,7 +1,7 @@
-import { Outlet } from 'react-router-dom'
+import Loader from "../../elements/Loader" 
+import useAuth from '../../hooks/useAuth'
 import { useState, useEffect } from 'react'
-import useAuth from '../hooks/useAuth'
-import Loader from "./Loader" 
+import { Outlet } from "react-router-dom"
 
 const PersistLogin = () => {
     const [isLoading, setIsLoading] = useState(true)

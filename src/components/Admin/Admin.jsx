@@ -1,5 +1,7 @@
-import Layout from './Layout';
-import Empresac from '../elements/Empresac';
+import Layout from '../../elements/Layout';
+import Regresar from '../../elements/Regresar';
+import { useNavigate } from 'react-router-dom';
+import ContEmpresa from '../Empresa/ContEmpresa';
 
 //Esto debe venir del backend realmente
 const empresas = [
@@ -14,6 +16,8 @@ const empresas = [
 ]
 
 const Admin = () => {
+    const navigate = useNavigate()
+
     return (
         <Layout>
             <h1 className='secondary-heading'>
@@ -23,15 +27,19 @@ const Admin = () => {
             <div className="grid-container">
                 {empresas.map((empresa, index) => (
                     <div className="grid-item" key={index}>
-                        <Empresac info={empresa} />
+                        <ContEmpresa info={empresa} />
                     </div>
                 ))}
             </div>
 
             <div className='center-grid'>
-                <a href="/formempresa">
-                    <button className="secondary-button">Añadir Empresa</button>
-                </a>
+                <Regresar />
+                <button 
+                    className="secondary-button"
+                    onClick={() => navigate("/formempresa")}
+                >
+                    Añadir Empresa
+                </button>
             </div>
         </Layout>
     );

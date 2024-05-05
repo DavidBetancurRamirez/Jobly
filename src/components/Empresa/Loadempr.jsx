@@ -1,4 +1,4 @@
-import '../styles/App.css';
+
 
 const Loadempr = (props) => {
     const { info } = props;

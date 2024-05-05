@@ -2,12 +2,12 @@ import './styles/main.css'
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import PersistLogin from './elements/PersistLogin.jsx';
 import { AuthProvider } from './context/AuthProvider.jsx';
+import PersistLogin from './components/Usuario/PersistLogin.jsx';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { RequiereRole } from './components/Usuario/PagProtegida.jsx';
 import { rutasPublicas, rutasProtegidas } from './utils/rutas.jsx';
 import { disableReactDevTools } from '@fvilers/disable-react-devtools';
-import { RequiereRole } from './elements/RequiereAuth.jsx';
 
 // eslint-disable-next-line no-undef
 if (process.env.NODE_ENV === 'production') {

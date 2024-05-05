@@ -1,6 +1,6 @@
 import styled from 'styled-components'
-import Oficina from '../images/Oficina.png'
-import colores from '../styles/colores'
+import Oficina from '../../images/Oficina.png'
+import colores from '../../styles/colores'
 
 
 const Fondo = styled.div`

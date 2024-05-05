@@ -1,8 +1,9 @@
-import useAuth from "../hooks/useAuth"
-import { Navigate, useLocation, Outlet } from "react-router-dom"
+import useAuth from '../../hooks/useAuth';
+import { Navigate, useLocation, Outlet } from "react-router-dom";
 
-// Verificar si existe un usuario
-const RequiereAuth = () => {
+
+export const RequiereAuth = () => {
+    // Verificar si existe un usuario
     const { auth } = useAuth()
     const location = useLocation()
 
@@ -13,10 +14,9 @@ const RequiereAuth = () => {
     )
 }
 
-export default RequiereAuth;
 
-// Verificar si tiene el rol necesario para acceder
 export const RequiereRole = ({ allowedRoles }) => {
+    // Verificar si el usuario cuenta con el rol necesario para acceder
     const { auth } = useAuth()
     const location = useLocation()
 

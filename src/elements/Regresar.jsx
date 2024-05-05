@@ -22,8 +22,8 @@ const BRegresar = styled.button`
     &:hover { color: ${colores.claro}; }
 `
 
-const Regresar = ({ replace }) => {
-    const regresar = useRegresar(replace)
+const Regresar = () => {
+    const regresar = useRegresar()
 
     return (
         <BRegresar type="button" onClick={() => regresar()}>

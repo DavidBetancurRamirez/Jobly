@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import colores from '../styles/colores'
+import colores from '../../styles/colores'
 import { useLocation, useNavigate } from 'react-router-dom';
-import { rutasPublicas } from '../utils/rutas';
+import { rutasPublicas } from '../../utils/rutas';
 import { AiOutlineLinkedin } from "react-icons/ai";
 import { FaInstagram, FaTiktok } from "react-icons/fa";
 

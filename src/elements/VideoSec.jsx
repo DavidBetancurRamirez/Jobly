@@ -1,4 +1,3 @@
-import '../styles/App.css';
 import YoutubePlayer from 'react-player/youtube'
 
 

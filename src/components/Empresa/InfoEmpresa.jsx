@@ -1,14 +1,14 @@
-import Layout from './Layout';
-import styled from 'styled-components';
-import Loadempr from '../elements/Loadempr';
-import Trabajoc from '../elements/Trabajoc';
+import Regresar from '../../elements/Regresar';
+import Trabajoc from '../Trabajo/Trabajoc';
+import Layout from '../../elements/Layout';
+import { useNavigate } from 'react-router-dom';
+import { AltHeading } from '../../styles/empresas';
 
 const iempresa = {
     nombre: "Bcookie",
     contacto: "Mateo Asmar +57 213 992 8129",
     descripcion: "Bcookie es una empresa que vende cookie dough con varios puntos de venta",
 }
-
 const trabajos = [
     {
         cargo: "Cajero",
@@ -24,24 +24,20 @@ const trabajos = [
     },
 ]
 
+const InfoEmpresa = () => {
+    const navigate = useNavigate()
 
-const AltHeading = styled.h1`
-  /* Alt Heading Styling */
-  color: #333; /* Dark gray color */
-  font-size: 2.2rem;
-  font-weight: bold;
-  text-align: center;
-  margin-bottom: 20px; /* Add space below heading */
-`;
-
-const EmpresaInfo = () => {
     return (
         <Layout>
-            <Loadempr info={iempresa} />
+            <div>
+                <h1 className='secondary-heading'>{iempresa.nombre}</h1>
+                <div className="div-container">
+                    <div className='secondary-text col'>{iempresa.descripcion}</div>
+                    <div className='secondary-text col'> Contacto: {iempresa.contacto} </div>
+                </div>
+            </div>
 
-            <AltHeading>
-                Trabajos Publicados
-            </AltHeading>
+            <AltHeading>Trabajos Publicados</AltHeading>
 
             <div className="grid-container-2">
                 {trabajos.map((trabajo, index) => (
@@ -52,14 +48,16 @@ const EmpresaInfo = () => {
             </div>
 
             <div className='center-grid'>
-                <a href="/formtrabajo/ide">
-                <button className="secondary-button" >
+                <Regresar />
+                <button 
+                    className="secondary-button"
+                    onClick={() => navigate("/formtrabajo")}
+                >
                     Añadir Trabajo
                 </button>
-                </a>
             </div>
         </Layout>
     )
 }
 
-export default EmpresaInfo;
+export default InfoEmpresa;

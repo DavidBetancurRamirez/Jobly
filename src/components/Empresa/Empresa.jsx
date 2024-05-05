@@ -1,7 +1,6 @@
-import '../styles/App.css';
-import Layout from './Layout';
-import EmpresaBG from "../images/EmpresaBG.jpg";
-import BtnDesplegable from '../elements/BtnDesplegable';
+import Layout from '../../elements/Layout';
+import EmpresaBG from "../../images/EmpresaBG.jpg";
+import BtnDesplegable from '../../elements/BtnDesplegable';
 
 export const BtnInfo = () => {
     const info = [
