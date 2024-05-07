@@ -15,6 +15,8 @@ export const AuthProvider = ({ children }) => {
             JSON.stringify({ username, pwd })
         );
 
+        console.log(response)
+
         if (!response.data) return false;
 
         const { accessToken, roles } = response.data
@@ -27,6 +29,17 @@ export const AuthProvider = ({ children }) => {
         localStorage.setItem("persist", persist)
 
         return true;
+    }
+
+    const signUp = async ({ username, email, pwd, persist, path}) => {
+        const response = await axiosPrivate.post(
+            path,
+            JSON.stringify({ username, email, pwd })
+        );
+
+        console.log(response)
+
+        return response.data;
     }
 
     const signOut = async () => {
@@ -68,6 +81,7 @@ export const AuthProvider = ({ children }) => {
             setAuth,
             setPersist,
             signIn,
+            signUp,
             signOut
         }}>
             {children}

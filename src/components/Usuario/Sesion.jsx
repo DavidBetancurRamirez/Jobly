@@ -23,7 +23,7 @@ const Sesion = () => {
     const [errPwd, setErrPwd] = useState(false)
     const errRef = useRef()
 
-    const { signIn, persist, setPersist } = useAuth()
+    const { signIn, signUp, persist, setPersist } = useAuth()
     const regresar = useRegresar()
 
     const handleSubmit = async (e) => {
@@ -39,12 +39,24 @@ const Sesion = () => {
         }
 
         try {
-            const response = await signIn({
-                username,
-                pwd,
-                persist,
-                path: inLogin ? '/auth' : '/register'
-            })
+            let response;
+
+            if (inLogin) {
+                response = await signIn({
+                    username,
+                    pwd,
+                    persist,
+                    path: inLogin ? '/Register/provider/validate_login' : '/Register/provider/register'
+                })
+            } else {
+                response = await signUp({
+                    username,
+                    email,
+                    pwd,
+                    persist,
+                    path: inLogin ? '/Register/provider/validate_login' : '/Register/provider/register'
+                })
+            }
 
             if (response) {
                 setErrMsg("")
