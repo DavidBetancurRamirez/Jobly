@@ -44,17 +44,16 @@ const Sesion = () => {
             if (inLogin) {
                 response = await signIn({
                     username,
+                    email,
                     pwd,
                     persist,
-                    path: inLogin ? '/Register/provider/validate_login' : '/Register/provider/register'
                 })
             } else {
                 response = await signUp({
                     username,
                     email,
                     pwd,
-                    persist,
-                    path: inLogin ? '/Register/provider/validate_login' : '/Register/provider/register'
+                    persist
                 })
             }
 
@@ -73,9 +72,9 @@ const Sesion = () => {
             } else if (error.response?.status === 400) {
                 setErrMsg("Se deben llenar todos los campos")
             } else if (error.response?.status === 401) {
-                setErrMsg("Usuario y/o contraseña incorrectos")
+                setErrMsg("Email y/o contraseña incorrectos")
             } else if (error.response?.status === 409) {
-                setErrMsg("Usuario ya existente")
+                setErrMsg("El correo ya existente")
             } else {
                 setErrMsg("Error en la sesión")
             }
@@ -95,7 +94,7 @@ const Sesion = () => {
                 <CContenido>
                     <Logo>Jobly.</Logo>
                     <Formulario onSubmit={handleSubmit}>
-                        
+                        {!inLogin &&
                             <CInput>
                                 <FaUserCircle />
                                 <Input 
@@ -107,9 +106,8 @@ const Sesion = () => {
                                     onChange={(e) => setUsername(e.target.value)}
                                 />
                             </CInput>
+                        }
                         
-                        {/* Se debe hacer con el email, pero el back esta con usuario, entonces por ahora se oculta email */}
-                        {!inLogin &&
                         <CInput>
                             <MdEmail />
                             <Input 
@@ -121,12 +119,11 @@ const Sesion = () => {
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </CInput>
-                        }
-
+                        
                         <CInput>
                             {showpwd
-                                ? <FaEye    className="click"
-                                            onClick={() => setShowPwd(!showpwd)} />
+                                ? <FaEye        className="click"
+                                                onClick={() => setShowPwd(!showpwd)} />
                                 : <FaEyeSlash   className="click"
                                                 onClick={() => setShowPwd(!showpwd)} />
                             }

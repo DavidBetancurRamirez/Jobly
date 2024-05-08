@@ -39,7 +39,7 @@ export const validarPwdIguales = ({ pwd, pwd2 }) => {
 
 const validaciones = ({inLogin, username, email, pwd, pwd2}) => {
     const funcionesValidacion = inLogin 
-                                    ? [validarUsername, validarPwd]
+                                    ? [validarEmail, validarPwd]
                                     : [validarUsername, validarEmail, validarPwd, validarPwdIguales]
     
     for (const funcion of funcionesValidacion) {

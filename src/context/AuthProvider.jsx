@@ -9,10 +9,12 @@ export const AuthProvider = ({ children }) => {
     const storedPersist = localStorage.getItem("persist");
     const [persist, setPersist] = useState(storedPersist !== null ? JSON.parse(storedPersist) : true);
 
-    const signIn = async ({ username, pwd, persist, path}) => {
+    const signIn = async ({ username, email, pwd, persist}) => {
+        const path = '/provider/validate_login'
+
         const response = await axiosPrivate.post(
             path,
-            JSON.stringify({ username, pwd })
+            JSON.stringify({ email, pwd })
         );
 
         console.log(response)
@@ -31,15 +33,21 @@ export const AuthProvider = ({ children }) => {
         return true;
     }
 
-    const signUp = async ({ username, email, pwd, persist, path}) => {
+    const signUp = async ({ username, email, pwd, persist }) => {
+        const path = '/provider/register'
+
         const response = await axiosPrivate.post(
             path,
-            JSON.stringify({ username, email, pwd })
+            JSON.stringify({ 
+                name: username, 
+                email, 
+                password: pwd 
+            })
         );
 
         console.log(response)
 
-        return response.data;
+        return response;
     }
 
     const signOut = async () => {
@@ -54,7 +62,7 @@ export const AuthProvider = ({ children }) => {
 
     const refreshToken = async () => {
         try {
-            const response = await axiosPrivate.get("/refresh")
+            const response = await axiosPrivate.get("/new_token")
             const { username, accessToken, roles } = response.data
 
             setAuth({

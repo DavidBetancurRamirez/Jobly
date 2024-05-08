@@ -1,6 +1,6 @@
 import axios from "axios"
 
-const BASE_URL = 'http://localhost:8081/API'
+const BASE_URL = 'http://localhost:8081/API/Register'
 
 export default axios.create({
     baseURL: BASE_URL
