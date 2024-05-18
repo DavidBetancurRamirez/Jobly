@@ -3,10 +3,10 @@ import './styles/main.css'
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { AuthProvider } from './context/AuthProvider.jsx';
-import PersistLogin from './components/Usuario/PersistLogin.jsx';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { RequiereRole } from './components/Usuario/PagProtegida.jsx';
+import PersistLogin from './components/Usuario/PersistLogin.jsx';
 import { rutasPublicas, rutasProtegidas } from './utils/rutas.jsx';
+import { RequiereRole } from './components/Usuario/PagProtegida.jsx';
 import { disableReactDevTools } from '@fvilers/disable-react-devtools';
 
 // eslint-disable-next-line no-undef
@@ -35,7 +35,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                         ))}
 
                         {/* Rutas protegidas */}
-                        <Route element={<RequiereRole allowedRoles={[5150]} />}>
+                        <Route element={<RequiereRole allowedRoles={[0]} />}>
                             {Object.keys(rutasProtegidas).map((routeKey, index) => (
                                 <Route
                                     key={index}

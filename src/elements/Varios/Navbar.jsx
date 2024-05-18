@@ -143,16 +143,18 @@ const Navbar = () => {
                     >
                         Empresa
                     </Link>
-                    <Link 
-                        $located={location.pathname=="/admin"}
-                        onClick={() => navigate("/admin")}
-                    >
-                        Admin
-                    </Link>
+                    {auth?.role == 0 &&
+                        <Link 
+                            $located={location.pathname=="/admin"}
+                            onClick={() => navigate("/admin")}
+                        >
+                            Admin
+                        </Link>
+                    }
                 </Links>
             </Logo>
 
-            {auth.accessToken ?
+            {auth.access ?
                 <Imagen onClick={toggleMenu}>
                     <img src={Foto} alt='Foto de perfil' />
                     <Menu open={openMenu}>
