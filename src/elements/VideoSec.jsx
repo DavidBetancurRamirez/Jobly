@@ -23,11 +23,6 @@ const VideoSec = () => {
                 playing
                 controls
             />
-            <div>
-                <h1 className="secondary-heading">
-                    Nuestra Oferta
-                </h1>
-            </div>
         </div>
     )
 }
