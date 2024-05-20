@@ -21,6 +21,44 @@ export const CInfoBasica = styled.section`
         align-items: center;
     }
 `
+export const EditInfoBasica = styled.form`
+    margin-top: 15px;
+    text-align: center;
+    
+    input {
+        background-color: #fff;
+        border: none;
+        outline: none;
+        padding: 5px;
+        width: 100%;
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+`
+export const CButtons = styled.section`
+    display: flex;
+`
+export const Button = styled.button`
+    background: ${props => (props.$option=="cancelar" ? colores.claro : colores.oscuro)};
+    width: ${props => (props.$width ? props.$width : "40%")};
+    padding: ${props => (props.$padding ? props.$padding : "10px")};
+    margin: ${props => (props.$margin ? props.$margin : "auto")};
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    max-width: 150px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+        margin-left: 10px;
+        color: #fff;
+        width: 18px;
+        height: 18px;
+    }
+`
 export const Imagen = styled.article`
     display: flex;
     align-items: center;
@@ -58,14 +96,19 @@ export const CInfo = styled.section`
 export const Info = styled.article`
     margin-bottom: 20px;
 
-    .titulo {
-        font-weight: bold;
-        font-size: 1.2rem;
+    > div {
         margin-left: 30px;
         margin-bottom: 10px;
+        display: flex;
+        align-items: center;
+
+        p {
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
     }
 `
-export const CCertificados = styled.div`
+export const CCertificados = styled.section`
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -93,39 +136,88 @@ export const Certificado = styled.div`
         width: 100%;
     }
 `
-export const IExtra = styled.div`
+export const IExtra = styled.form`
     display: flex;
     margin-bottom: 10px;
 
-    .name {
-        color: #fff;
-        padding: 10px;
-        min-height: 100px;
-        font-size: 1.1rem;
-        font-weight: bold;
-        width: 150px;
-        display: grid;
-        text-align: center;
-        place-items: center;
-        border-radius: 10px 0 0 10px;
-        background-color: ${colores.claro};
+    textarea {
+        width: 100%;
+        resize: vertical;
+        overflow: auto;
+        outline: none;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: #fff;
     }
 
-    .description {
-        width: 100%;
-        padding: 15px;
-        display: flex;
-        place-items: center;
-        text-align: justify;
-        white-space: pre-wrap;
-        background-color: #fff;
-        border-radius: 0 10px 10px 0;
+    .edit { display: none; }
+    &:hover {
+        .edit { display: flex; }
+    }
+`
+export const CIExtraLeft = styled.div`
+    padding: 10px;
+    min-height: 100px;
+    width: 150px;
+    display: grid;
+    place-items: center;
+    border-radius: 10px 0 0 10px;
+    background-color: ${colores.claro};
+
+    p {
+        color: #fff;
+        font-size: 1.1rem;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    textarea { 
+        text-align: center;
+        min-height: 2rem;        
     }
 
     @media (max-width: 550px) {
-        .name { 
-            padding: 5px;
-            width: 150px;
+        padding: 5px;
+        width: 150px;
+    }
+`
+export const CIExtraRight = styled.div`
+    width: 100%;
+    padding: 15px;
+    display: grid;
+    place-items: center;
+    background-color: #fff;
+    border-radius: 0 10px 10px 0;
+    position: relative;
+
+    p {
+        text-align: justify;
+        white-space: pre-wrap;
+    }
+
+    textarea { 
+        min-height: 100%;
+        text-align: justify;
+        margin-bottom: 10px;
+    }
+`
+export const ButtonsEdit = styled.div`
+    bottom: 5px;
+    right: 5px;
+    position: absolute;
+    display: flex;
+    gap: 5px;
+
+    div {
+        background-color: ${colores.oscuro};
+        border-radius: 4px;
+        padding: 2px;
+        cursor: pointer;
+
+        svg {
+            color: #fff;
+            width: 12px;
+            height: 12px;
         }
     }
 `
