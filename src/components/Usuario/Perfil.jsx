@@ -4,10 +4,9 @@ import Rating from "@mui/material/Rating";
 import Layout from '../../elements/Layout';
 import Google from '../../images/google.png';
 import Foto from "../../images/anonymous.png";
+import { IoIosAddCircle } from "react-icons/io";
 import InfoExtra from '../../elements/InfoExtra';
 import CaraFeliz from '../../images/FotoPerfilPrueba.jpg';
-
-
 
 
 const Perfil = () => {
@@ -44,7 +43,7 @@ const Perfil = () => {
 
                 <S.CInfo>
                     <Certificaciones />
-                    <InfoExtra />
+                    <InformacionExtra />
                     <Reviews />
                 </S.CInfo>
             </S.CPrincipal>
@@ -145,6 +144,60 @@ const Certificaciones = () => {
                     </S.Certificado>
                 ))}
             </S.CCertificados>
+        </S.Info>
+    )
+}
+
+const InformacionExtra = () => {
+    const [adding, setAdding] = useState(false);
+
+    const infoExtra = [
+        {
+            name: "Experiencia laboral",
+            description: "En Empresa XYZ, fui responsable de desarrollar y mantener sitios web para clientes de diversos sectores. Trabajé en equipo para diseñar y crear soluciones web personalizadas, utilizando tecnologías como HTML, CSS, JavaScript y WordPress. Además, colaboré estrechamente con diseñadores y clientes para asegurar la satisfacción del usuario final y cumplir con los plazos de entrega."
+        },
+        {
+            name: "Educación",
+            description: "Carrera: Ingeniería de sistemas\nFecha de graduación: 2018\n\nDurante mi carrera en la Universidad ABC, adquirí conocimientos sólidos en programación, bases de datos, diseño de software y desarrollo web. Participé en proyectos prácticos que me permitieron aplicar mis habilidades en situaciones del mundo real y trabajar en equipo para lograr objetivos comunes."
+        }
+    ]
+
+    const togleAdding = () => {
+        setAdding(!adding)
+    }
+    
+    return (
+        <S.Info>
+            <div>
+                <p>Información Extra</p>
+                {!adding && (
+                    <S.Button
+                        type='button'
+                        $width="auto"
+                        $padding="5px 15px"
+                        $margin="0 15px"
+                        onClick={togleAdding}
+                    >
+                        <span>Agregar</span><IoIosAddCircle />
+                    </S.Button>
+                )}
+            </div>
+            <section>
+                {adding && 
+                    <InfoExtra 
+                        adding={adding}
+                        setAdding={setAdding} 
+                    /> 
+                }
+
+                {infoExtra.map((info, i) => (
+                    <InfoExtra 
+                        key={i}
+                        nombre={info.name}
+                        descripcion={info.description}
+                    /> 
+                ))}
+            </section>
         </S.Info>
     )
 }
