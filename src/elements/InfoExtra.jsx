@@ -29,7 +29,6 @@ const InfoExtra = ({ adding, setAdding, info_id="", nombre="", descripcion="", s
         } catch (error) {
             console.error(error)
         }
-        
     }
 
     const handleCancelar = () => {
@@ -45,8 +44,19 @@ const InfoExtra = ({ adding, setAdding, info_id="", nombre="", descripcion="", s
         })
     }
 
-    const handleEliminar = () => {
-        // Actualmente no se puede eliminar
+    const handleEliminar = async () => {
+        try {
+            await axiosPrivate.put(
+                BASE_URL.user + "Provider/delete/extraInfo",
+                JSON.stringify({ 
+                    info_id
+                })
+            )
+            
+            setUpdate(false)
+        } catch (error) {
+            console.error(error)
+        }
     }
 
     return (
