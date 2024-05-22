@@ -93,6 +93,27 @@ const InformacionExtra = () => {
     const togleAdding = () => {
         setAdding(!adding)
     }
+
+    const editarInfo = async ({ info_id, info_name, info_description }) => {
+        try {
+            const extra_info = infoExtra.map(info => 
+                info.info_id === info_id 
+                    ? { ...info, info_name, info_description } 
+                    : info
+            );
+
+            await axiosPrivate.put(
+                BASE_URL.user + "Provider/extraInfo",
+                JSON.stringify({ 
+                    infoToUpdate: extra_info.reverse()
+                })
+            )
+
+            setUpdate(false)
+        } catch (error) {
+            console.error(error)
+        }
+    }
     
     return (
         <S.Info>
@@ -123,10 +144,11 @@ const InformacionExtra = () => {
                     infoExtra.map((info, i) => (
                         <InfoExtra 
                             key={i}
-                            id={info.info_id}
+                            info_id={info.info_id}
                             nombre={info.info_name}
                             descripcion={info.info_description}
                             setUpdate={setUpdate}
+                            editarInfo={editarInfo}
                         /> 
                     ))
                 }

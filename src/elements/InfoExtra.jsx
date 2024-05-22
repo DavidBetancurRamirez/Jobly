@@ -6,18 +6,13 @@ import { FaEdit } from 'react-icons/fa';
 import { axiosPrivate, BASE_URL } from '../api/axios';
 
 
-const InfoExtra = ({ adding, setAdding, id="", nombre="", descripcion="", setUpdate }) => {
+const InfoExtra = ({ adding, setAdding, info_id="", nombre="", descripcion="", setUpdate, editarInfo }) => {
     const [edit, setEdit] = useState(adding)
     const [name, setName] = useState(nombre)
     const [description, setDescription] = useState(descripcion)
 
     const handleAgregar = async () => {
         try {
-            if (!adding) {
-                console.log("edicion aun no disponible")
-                return;
-            }
-            
             await axiosPrivate.post(
                 BASE_URL.user + "Provider/extraInfo",
                 JSON.stringify({ 
@@ -27,7 +22,7 @@ const InfoExtra = ({ adding, setAdding, id="", nombre="", descripcion="", setUpd
                     }
                 })
             )
-
+            
             setAdding(false)
             setEdit(false)
             setUpdate(false)
@@ -40,6 +35,14 @@ const InfoExtra = ({ adding, setAdding, id="", nombre="", descripcion="", setUpd
     const handleCancelar = () => {
         if (adding) setAdding(false)
         setEdit(false)
+    }
+
+    const handleEditar = () => {
+        editarInfo({ 
+            info_id, 
+            info_name: name, 
+            info_description: description 
+        })
     }
 
     const handleEliminar = () => {
@@ -83,19 +86,27 @@ const InfoExtra = ({ adding, setAdding, id="", nombre="", descripcion="", setUpd
                             >
                                 <span>Cancelar</span><MdCancel />
                             </S.Button>
-                            <S.Button
-                                type='button'
-                                $width="auto"
-                                $padding="5px 15px"
-                                $margin="0 15px"
-                                onClick={handleAgregar}
-                            >
-                                {adding ? <>
+                            {adding ?
+                                <S.Button
+                                    type='button'
+                                    $width="auto"
+                                    $padding="5px 15px"
+                                    $margin="0 15px"
+                                    onClick={handleAgregar}
+                                >
                                     <span>Agregar</span><IoIosAddCircle />
-                                </> : <>
+                                </S.Button>
+                            :
+                                <S.Button
+                                    type='button'
+                                    $width="auto"
+                                    $padding="5px 15px"
+                                    $margin="0 15px"
+                                    onClick={handleEditar}
+                                >
                                     <span>Editar</span><FaEdit />
-                                </>}
-                            </S.Button>
+                                </S.Button>
+                            }
                         </S.CButtons>
                     </> 
                 : 
