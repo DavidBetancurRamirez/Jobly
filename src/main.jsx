@@ -6,8 +6,9 @@ import { AuthProvider } from './context/AuthProvider.jsx';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PersistLogin from './components/Usuario/PersistLogin.jsx';
 import { rutasPublicas, rutasProtegidas } from './utils/rutas.jsx';
-import { RequiereRole } from './components/Usuario/PagProtegida.jsx';
+import { RequiereAuth, RequiereRole } from './components/Usuario/PagProtegida.jsx';
 import { disableReactDevTools } from '@fvilers/disable-react-devtools';
+import Perfil from './components/Usuario/Perfil.jsx';
 
 // eslint-disable-next-line no-undef
 if (process.env.NODE_ENV === 'production') {
@@ -33,6 +34,13 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                                 element={rutasPublicas[routeKey].element}
                             />
                         ))}
+
+                        <Route element={<RequiereAuth />}>
+                            <Route 
+                                path='/perfil'
+                                element={<Perfil />}
+                            />
+                        </Route>
 
                         {/* Rutas protegidas */}
                         <Route element={<RequiereRole allowedRoles={[0]} />}>

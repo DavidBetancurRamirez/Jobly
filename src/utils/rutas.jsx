@@ -30,10 +30,10 @@ export const rutasPublicas = {
         path: '/estudiantes',
         element: <Estudiante />
     },
-    perfil: {
-        path: '/perfil',
-        element: <Perfil />
-    },
+    // perfil: {
+    //     path: '/perfil',
+    //     element: <Perfil />
+    // },
     recuperarContraseña: {
         path: '/recuperar-contraseña',
         element: <Recuperar />
