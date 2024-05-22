@@ -41,6 +41,28 @@ title {
 }
 `
 
+const Button = styled.button`
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+  background-color: #283583;
+  justify-content: center;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+const ButtonContainer = styled.div`
+    display: flex;
+    justify-content: right;
+    width: 100%;
+`;
+
 const Trabajoc = (props) => {
   //console.log(props.cargo)
   return (
@@ -50,7 +72,13 @@ const Trabajoc = (props) => {
       <div className='description'>{props.props.descripcion}</div>
 
       <div className='remuneracion'>{props.props.remuneracion}</div>
+      <ButtonContainer>
+        <a href='/trabajo/id'>
+          <Button>Ver mas</Button>
+        </a>
+      </ButtonContainer>
     </CardTrabajo>
-)}
+  )
+}
 
 export default Trabajoc

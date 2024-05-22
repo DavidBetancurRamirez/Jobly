@@ -10,6 +10,8 @@ import FormTrabajo from '../components/Trabajo/FormTrabajo.jsx';
 import Recuperar from '../elements/Varios/Recuperar.jsx';
 import Sesion from '../components/Usuario/Sesion.jsx';
 import Unauthorized from '../elements/Varios/Unauthorized.jsx';
+import InfoTrabajo from '../components/Trabajo/InfoTrabajo.jsx';
+import AllTrabajos from '../components/AllTrabajos.jsx';
 
 
 // Objeto que contiene la información de las rutas
@@ -46,9 +48,6 @@ export const rutasPublicas = {
         path: '/unauthorized',
         element: <Unauthorized />
     },
-};
-
-export const rutasProtegidas = {
     admin: {
         path: '/admin',
         element: <Admin />
@@ -65,4 +64,16 @@ export const rutasProtegidas = {
         path: '/formtrabajo',
         element: <FormTrabajo />
     },
+    trabajoID: {
+        path:'/trabajo/id',
+        element: <InfoTrabajo />
+    },
+    trabajos: {
+        path:'/trabajos',
+        element: <AllTrabajos />
+    }
 };
+
+// export const rutasProtegidas = {
+    
+// };

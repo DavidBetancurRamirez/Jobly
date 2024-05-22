@@ -115,7 +115,7 @@ const Navbar = () => {
     
     const navigate = useNavigate();
     const location = useLocation();
-    const { auth, signOut } = useAuth();
+    // const { auth, signOut } = useAuth();
     
     const toggleMenu = () => {
         setOpenMenu(!openMenu);
@@ -149,10 +149,16 @@ const Navbar = () => {
                     >
                         Admin
                     </Link>
+                    <Link 
+                        $located={location.pathname=="/trabajos"}
+                        onClick={() => navigate("/trabajos")}
+                    >
+                        Trabajos
+                    </Link>
                 </Links>
             </Logo>
 
-            {auth.accessToken ?
+            {/* {auth.accessToken ?
                 <Imagen onClick={toggleMenu}>
                     <img src={Foto} alt='Foto de perfil' />
                     <Menu open={openMenu}>
@@ -171,7 +177,7 @@ const Navbar = () => {
                 <Links>
                     <Link onClick={() => navigate("/sesion")}>Login</Link>
                 </Links>
-            }
+            } */}
         </Nav>
     )
 }

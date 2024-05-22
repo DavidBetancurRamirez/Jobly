@@ -20,6 +20,7 @@ const Admin = () => {
 
     return (
         <Layout>
+            
             <h1 className='secondary-heading'>
                 Empresas Registradas
             </h1>
