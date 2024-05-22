@@ -14,6 +14,14 @@ export const validarEmail = ({ email }) => {
     return !emailRegex.test(email) && ["Email no valido", "email"];
 }
 
+export const validarPhone = ({ phone }) => {
+    if (!phone) return;
+    
+    const regex = /^(\+?\d{1,4}[-.\s]?)?(\(?\d{3}\)?[-.\s]?)?[\d\s-]{7,10}$/;
+
+    return !regex.test(phone) && ["Numero de telefono no valido", "phone"];
+}
+
 export const validarPwd = ({ password }) => {
     const minPwdLength = 8;
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*.,\-_]).{8,}$/;
@@ -37,13 +45,15 @@ export const validarPwdIguales = ({ password, password2 }) => {
     return password!==password2 && ["Las contraseñas no coinciden", "pwd iguales"];
 }
 
-const validaciones = ({inLogin, name, email, password, password2}) => {
-    const funcionesValidacion = inLogin 
+const validaciones = ({inLogin, name, email, password, password2, phone, funcionesValidacion}) => {
+    if (!funcionesValidacion) {
+        funcionesValidacion = inLogin 
                                     ? [validarEmail, validarPwd]
                                     : [validarName, validarEmail, validarPwd, validarPwdIguales]
+    }
     
     for (const funcion of funcionesValidacion) {
-        const mensajeError = funcion({ name, email, password, password2 });
+        const mensajeError = funcion({ name, email, password, password2, phone });
 
         if (mensajeError) return mensajeError;
     }

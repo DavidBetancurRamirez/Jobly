@@ -1,19 +1,20 @@
 import Cookies from 'js-cookie';
-import { axiosPrivate } from "../api/axios";
+import { BASE_URL, axiosPrivate } from "../api/axios";
 import { createContext, useState } from "react";
 
+const urlBase = BASE_URL.register
 
 const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({})
     const storedPersist = localStorage.getItem("persist");
-    const [persist, setPersist] = useState(storedPersist !== null ? JSON.parse(storedPersist) : true);
+    const [persist, setPersist] = useState(storedPersist ? true : JSON.parse(storedPersist));
 
     const signIn = async ({ email, password, persist, admin }) => {
         const path = admin
-                        ? '/admin/validate_login'
-                        : '/provider/validate_login'
+                        ? urlBase + 'admin/validate_login'
+                        : urlBase + 'provider/validate_login'
 
         const response = await axiosPrivate.post(
             path,
@@ -39,7 +40,7 @@ export const AuthProvider = ({ children }) => {
 
     const signUp = async ({ name, email, password, persist, admin}) => {
         const response = await axiosPrivate.post(
-            '/provider/register',
+            urlBase + 'provider/register',
             JSON.stringify({ 
                 name, 
                 email, 
@@ -63,7 +64,9 @@ export const AuthProvider = ({ children }) => {
         try {
             if (!Cookies.get('R_Token')) return null
 
-            const response = await axiosPrivate.post("/new_token")
+            const response = await axiosPrivate.post(
+                urlBase + "new_token"
+            )
             const { name, role } = response.data
 
             setAuth({
