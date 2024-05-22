@@ -3,15 +3,38 @@ import * as S from '../styles/perfil';
 import { MdCancel, MdDeleteForever } from "react-icons/md";
 import { IoIosAddCircle } from "react-icons/io";
 import { FaEdit } from 'react-icons/fa';
+import { axiosPrivate, BASE_URL } from '../api/axios';
 
 
-const InfoExtra = ({ adding, setAdding, nombre="", descripcion="" }) => {
+const InfoExtra = ({ adding, setAdding, id="", nombre="", descripcion="", setUpdate }) => {
     const [edit, setEdit] = useState(adding)
     const [name, setName] = useState(nombre)
     const [description, setDescription] = useState(descripcion)
 
-    const handleAgregar = () => {
+    const handleAgregar = async () => {
+        try {
+            if (!adding) {
+                console.log("edicion aun no disponible")
+                return;
+            }
+            
+            await axiosPrivate.post(
+                BASE_URL.user + "Provider/extraInfo",
+                JSON.stringify({ 
+                    extraInfo: {
+                        name, 
+                        description 
+                    }
+                })
+            )
 
+            setAdding(false)
+            setEdit(false)
+            setUpdate(false)
+        } catch (error) {
+            console.error(error)
+        }
+        
     }
 
     const handleCancelar = () => {
@@ -20,7 +43,7 @@ const InfoExtra = ({ adding, setAdding, nombre="", descripcion="" }) => {
     }
 
     const handleEliminar = () => {
-
+        // Actualmente no se puede eliminar
     }
 
     return (
@@ -67,7 +90,11 @@ const InfoExtra = ({ adding, setAdding, nombre="", descripcion="" }) => {
                                 $margin="0 15px"
                                 onClick={handleAgregar}
                             >
-                                <span>Agregar</span><IoIosAddCircle />
+                                {adding ? <>
+                                    <span>Agregar</span><IoIosAddCircle />
+                                </> : <>
+                                    <span>Editar</span><FaEdit />
+                                </>}
                             </S.Button>
                         </S.CButtons>
                     </> 
@@ -75,14 +102,10 @@ const InfoExtra = ({ adding, setAdding, nombre="", descripcion="" }) => {
                     <>
                         <p>{description}</p>
                         <S.ButtonsEdit className='edit'>
-                            <div
-                                onClick={handleEliminar}
-                            >
+                            <div onClick={handleEliminar}>
                                 <MdDeleteForever />
                             </div>
-                            <div
-                                onClick={() => setEdit(!edit)}
-                            >
+                            <div onClick={() => setEdit(!edit)}>
                                 <FaEdit />
                             </div>
                         </S.ButtonsEdit>

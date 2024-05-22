@@ -37,6 +37,7 @@ export const EditInfoBasica = styled.form`
 `
 export const CButtons = styled.section`
     display: flex;
+    align-items: center;
 `
 export const Button = styled.button`
     background: ${props => (props.$option=="cancelar" ? colores.claro : colores.oscuro)};
@@ -92,6 +93,7 @@ export const Datos = styled.article`
 `
 export const CInfo = styled.section`
     margin: 20px;
+    width: 100%;
 `
 export const Info = styled.article`
     margin-bottom: 20px;
@@ -191,6 +193,7 @@ export const CIExtraRight = styled.div`
     position: relative;
 
     p {
+        width: 100%;
         text-align: justify;
         white-space: pre-wrap;
     }

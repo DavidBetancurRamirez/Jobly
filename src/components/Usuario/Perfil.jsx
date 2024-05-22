@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as S from '../../styles/perfil';
 import Rating from "@mui/material/Rating";
 import Layout from '../../elements/Layout';
@@ -7,10 +7,28 @@ import Foto from "../../images/anonymous.png";
 import { IoIosAddCircle } from "react-icons/io";
 import InfoExtra from '../../elements/InfoExtra';
 import CaraFeliz from '../../images/FotoPerfilPrueba.jpg';
+import { axiosPrivate, BASE_URL } from '../../api/axios';
 
 
 const Perfil = () => {
     const [isEditing, setIsEditing] = useState(false);
+    const [info, setInfo] = useState(null);
+
+    useEffect(() => {
+        async function fetchData() {
+            try {
+                // Puedes usar await aquí
+                const response = await axiosPrivate.get(
+                    BASE_URL.user + "Provider/basicInfo"
+                );
+                setInfo(response.data);
+            } catch(e) {
+                console.log(e)
+            }
+        }
+
+        fetchData();
+    }, [])
 
     const toggleEdit = () => {
         setIsEditing(!isEditing);
@@ -28,9 +46,9 @@ const Perfil = () => {
                         <EditInfoBasica toggleEdit={toggleEdit} />
                     :
                         <S.Datos>
-                            <p>Anonymous</p>
-                            <p>anonymous@anonimato.com</p>
-                            <p>3046295800</p>
+                            <p>{info ? info.name : "Anonymous"}</p>
+                            <p>{info ? info.email : "anonymous@anonimato.com"}</p>
+                            <p>{info ? info.phone : "3046295800"}</p>
                             <S.Button 
                                 $width="90%"
                                 onClick={toggleEdit}
@@ -42,9 +60,9 @@ const Perfil = () => {
                 </S.CInfoBasica>
 
                 <S.CInfo>
-                    <Certificaciones />
+                    {/* <Certificaciones /> */}
                     <InformacionExtra />
-                    <Reviews />
+                    {/* <Reviews /> */}
                 </S.CInfo>
             </S.CPrincipal>
         </Layout>
@@ -107,7 +125,7 @@ const EditInfoBasica = ({ toggleEdit }) => {
     )
 }
 
-const Certificaciones = () => {
+const Certificaciones = ({ certificaciones }) => {
     const certificados = [
         {
             name: "Full Stack REACT-NODE-MONGO",
@@ -150,17 +168,24 @@ const Certificaciones = () => {
 
 const InformacionExtra = () => {
     const [adding, setAdding] = useState(false);
+    const [update, setUpdate] = useState(true);
+    const [infoExtra, setInfoExtra] = useState(null);
 
-    const infoExtra = [
-        {
-            name: "Experiencia laboral",
-            description: "En Empresa XYZ, fui responsable de desarrollar y mantener sitios web para clientes de diversos sectores. Trabajé en equipo para diseñar y crear soluciones web personalizadas, utilizando tecnologías como HTML, CSS, JavaScript y WordPress. Además, colaboré estrechamente con diseñadores y clientes para asegurar la satisfacción del usuario final y cumplir con los plazos de entrega."
-        },
-        {
-            name: "Educación",
-            description: "Carrera: Ingeniería de sistemas\nFecha de graduación: 2018\n\nDurante mi carrera en la Universidad ABC, adquirí conocimientos sólidos en programación, bases de datos, diseño de software y desarrollo web. Participé en proyectos prácticos que me permitieron aplicar mis habilidades en situaciones del mundo real y trabajar en equipo para lograr objetivos comunes."
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const response = await axiosPrivate.get(
+                    BASE_URL.user + "Provider/extraInfo"
+                );
+                setInfoExtra(response?.data?.extra_info?.reverse());
+                setUpdate(true)
+            } catch(e) {
+                console.log(e)
+            }
         }
-    ]
+
+        fetchData();
+    }, [update])
 
     const togleAdding = () => {
         setAdding(!adding)
@@ -186,23 +211,28 @@ const InformacionExtra = () => {
                 {adding && 
                     <InfoExtra 
                         adding={adding}
-                        setAdding={setAdding} 
+                        setAdding={setAdding}
+                        setUpdate={setUpdate}
                     /> 
                 }
 
-                {infoExtra.map((info, i) => (
-                    <InfoExtra 
-                        key={i}
-                        nombre={info.name}
-                        descripcion={info.description}
-                    /> 
-                ))}
+                {update && infoExtra?.length > 0 &&
+                    infoExtra.map((info, i) => (
+                        <InfoExtra 
+                            key={i}
+                            id={info.info_id}
+                            nombre={info.info_name}
+                            descripcion={info.info_description}
+                            setUpdate={setUpdate}
+                        /> 
+                    ))
+                }
             </section>
         </S.Info>
     )
 }
 
-const Reviews = () => {
+const Reviews = ({ review }) => {
     const reviews = [
         {
             autor: {
