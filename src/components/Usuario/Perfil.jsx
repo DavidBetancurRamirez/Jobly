@@ -3,127 +3,30 @@ import * as S from '../../styles/perfil';
 import Rating from "@mui/material/Rating";
 import Layout from '../../elements/Layout';
 import Google from '../../images/google.png';
-import Foto from "../../images/anonymous.png";
 import { IoIosAddCircle } from "react-icons/io";
 import InfoExtra from '../../elements/InfoExtra';
 import CaraFeliz from '../../images/FotoPerfilPrueba.jpg';
 import { axiosPrivate, BASE_URL } from '../../api/axios';
+import InfoBasica from '../../elements/InfoBasica';
 
 
 const Perfil = () => {
-    const [isEditing, setIsEditing] = useState(false);
-    const [info, setInfo] = useState(null);
-
-    useEffect(() => {
-        async function fetchData() {
-            try {
-                // Puedes usar await aquí
-                const response = await axiosPrivate.get(
-                    BASE_URL.user + "Provider/basicInfo"
-                );
-                setInfo(response.data);
-            } catch(e) {
-                console.log(e)
-            }
-        }
-
-        fetchData();
-    }, [])
-
-    const toggleEdit = () => {
-        setIsEditing(!isEditing);
-    };
 
     return (
         <Layout>
             <S.CPrincipal>
-                <S.CInfoBasica>
-                    <S.Imagen>
-                        <img src={Foto} alt='Foto de perfil' />
-                    </S.Imagen>
-
-                    {isEditing ?
-                        <EditInfoBasica toggleEdit={toggleEdit} />
-                    :
-                        <S.Datos>
-                            <p>{info ? info.name : "Anonymous"}</p>
-                            <p>{info ? info.email : "anonymous@anonimato.com"}</p>
-                            <p>{info ? info.phone : "3046295800"}</p>
-                            <S.Button 
-                                $width="90%"
-                                onClick={toggleEdit}
-                            >
-                                Editar informacion
-                            </S.Button>
-                        </S.Datos>
-                    }
-                </S.CInfoBasica>
+                <InfoBasica />
 
                 <S.CInfo>
-                    {/* <Certificaciones /> */}
+                    <Certificaciones />
                     <InformacionExtra />
-                    {/* <Reviews /> */}
+                    <Reviews />
                 </S.CInfo>
             </S.CPrincipal>
         </Layout>
     );
 }
 
-
-const EditInfoBasica = ({ toggleEdit }) => {
-    const [name, setName] = useState("Anonymous")
-    const [email, setEmail] = useState("anonymous@anonimato.com")
-    const [phone, setPhone] = useState("3046295800")
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-    }
-
-    return (
-        <S.EditInfoBasica onSubmit={handleSubmit}>
-            <input 
-                required
-                autoComplete="username"
-                type="text"
-                id = "username"
-                placeholder="Nombre Usuario"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-            />
-            <input
-                autoComplete="email"
-                type="email"
-                id = "email"
-                placeholder="Correo Electronico"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-                autoComplete="phone"
-                type="text"
-                id = "phone"
-                placeholder="Num telefono"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
-            />
-            <S.CButtons>
-                <S.Button 
-                    type="button" 
-                    $option='cancelar'
-                    onClick={toggleEdit}
-                >
-                    Cancelar
-                </S.Button>
-                <S.Button 
-                    type="submit" 
-                    $option='guardar'
-                >
-                    Guardar
-                </S.Button>
-            </S.CButtons>
-        </S.EditInfoBasica>
-    )
-}
 
 const Certificaciones = ({ certificaciones }) => {
     const certificados = [

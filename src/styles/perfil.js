@@ -186,6 +186,7 @@ export const CIExtraLeft = styled.div`
 export const CIExtraRight = styled.div`
     width: 100%;
     padding: 15px;
+    padding-bottom: 25px;
     display: grid;
     place-items: center;
     background-color: #fff;
