@@ -1,11 +1,11 @@
-export const validarUsername = ({ username }) => {
-    const minUsernameLength = 0;
-    const maxUsernameLength = 50;
+export const validarName = ({ name }) => {
+    const minNameLength = 0;
+    const maxNameLength = 50;
 
-    const usernameValido =  username.length > minUsernameLength && 
-                            username.length <= maxUsernameLength
+    const nameValido =  name.length > minNameLength && 
+                        name.length <= maxNameLength
 
-    return !usernameValido && [`Longitud maxima nombre de usuario: ${maxUsernameLength} caracteres`, "username"];
+    return !nameValido && [`Longitud maxima nombre de usuario: ${maxNameLength} caracteres`, "name"];
 }
 
 export const validarEmail = ({ email }) => {
@@ -14,12 +14,20 @@ export const validarEmail = ({ email }) => {
     return !emailRegex.test(email) && ["Email no valido", "email"];
 }
 
-export const validarPwd = ({ pwd }) => {
+export const validarPhone = ({ phone }) => {
+    if (!phone) return;
+    
+    const regex = /^(\+?\d{1,4}[-.\s]?)?(\(?\d{3}\)?[-.\s]?)?[\d\s-]{7,10}$/;
+
+    return !regex.test(phone) && ["Numero de telefono no valido", "phone"];
+}
+
+export const validarPwd = ({ password }) => {
     const minPwdLength = 8;
     const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*.,\-_]).{8,}$/;
 
-    const passwordValida =  pwd.length >= minPwdLength && 
-                            passwordRegex.test(pwd);
+    const passwordValida =  password.length >= minPwdLength && 
+                            passwordRegex.test(password);
 
     const mensaje = [
         "La contraseña debe contener al menos:",
@@ -33,25 +41,24 @@ export const validarPwd = ({ pwd }) => {
     return !passwordValida && [mensaje, "pwd"];
 }
 
-export const validarPwdIguales = ({ pwd, pwd2 }) => {
-    return pwd!==pwd2 && ["Las contraseñas no coinciden", "pwd iguales"];
+export const validarPwdIguales = ({ password, password2 }) => {
+    return password!==password2 && ["Las contraseñas no coinciden", "pwd iguales"];
 }
 
-const validaciones = ({inLogin, username, email, pwd, pwd2}) => {
-    /* Mientras se cambia la validacion del backend de usuario a email
-    const funcionesValidacion = inLogin 
+const validaciones = ({inLogin, name, email, password, password2, phone, funcionesValidacion}) => {
+    if (!funcionesValidacion) {
+        funcionesValidacion = inLogin 
                                     ? [validarEmail, validarPwd]
-                                    : [validarUsername, validarEmail, validarPwd, validarPwdIguales]
-                                    */
-    const funcionesValidacion = [validarUsername, validarPwd]
+                                    : [validarName, validarEmail, validarPwd, validarPwdIguales]
+    }
     
     for (const funcion of funcionesValidacion) {
-        const mensajeError = funcion({ username, email, pwd, pwd2 });
+        const mensajeError = funcion({ name, email, password, password2, phone });
 
         if (mensajeError) return mensajeError;
     }
     
-    return [undefined, undefined]; // Si todas las validaciones son exitosas
+    return [undefined, "Validacion exitosa"]; // Si todas las validaciones son exitosas
 }
 
 export default validaciones

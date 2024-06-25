@@ -1,43 +1,88 @@
+import Cookies from 'js-cookie';
+import { BASE_URL, axiosPrivate } from "../api/axios";
 import { createContext, useState } from "react";
-import { axiosPrivate } from "../api/axios";
 
+const urlBase = BASE_URL.register
 
 const AuthContext = createContext()
 
-export const AuthProvider = ({children}) => {
+export const AuthProvider = ({ children }) => {
     const [auth, setAuth] = useState({})
     const storedPersist = localStorage.getItem("persist");
-    const [persist, setPersist] = useState(storedPersist !== null ? JSON.parse(storedPersist) : true);
+    const [persist, setPersist] = useState(storedPersist ? true : JSON.parse(storedPersist));
+
+    const signIn = async ({ email, password, persist, admin }) => {
+        const path = admin
+                        ? urlBase + 'admin/validate_login'
+                        : urlBase + 'provider/validate_login'
+
+        const response = await axiosPrivate.post(
+            path,
+            JSON.stringify({ 
+                email, 
+                password 
+            })
+        );
+
+        if (!response.data) return false;
+
+        const { name, role } = response.data
+        setAuth({ 
+            name,
+            role,
+            access: true
+        })
+
+        localStorage.setItem("persist", persist)
+
+        return true;
+    }
+
+    const signUp = async ({ name, email, password, persist, admin}) => {
+        const response = await axiosPrivate.post(
+            urlBase + 'provider/register',
+            JSON.stringify({ 
+                name, 
+                email, 
+                password 
+            })
+        );
+        
+        if (response.statusText != "Created") return false;
+
+        return await signIn({ email, password, persist, admin });
+    }
 
     const signOut = async () => {
-        setAuth({})
+        Cookies.remove('R_Token');
+        Cookies.remove('A_Token');
 
-        try {
-            await axiosPrivate("/logout")
-        } catch (error) {
-            console.error(error)
-        }
+        setAuth({});
     }
 
     const refreshToken = async () => {
         try {
-            const response = await axiosPrivate.get("/refresh")
-            const { username, accessToken } = response.data
+            if (!Cookies.get('R_Token')) return null
 
-            setAuth(prev => {
-                return {
-                    ...prev,
-                    username,
-                    accessToken: response.data.accessToken
-                }
+            const response = await axiosPrivate.post(
+                urlBase + "new_token"
+            )
+            const { name, role } = response.data
+
+            setAuth({
+                name,
+                role,
+                access: true
             })
-    
-            return accessToken
+            
+            return true
         } catch (error) {
-            console.error(error)
+            if (error?.response?.status != 401) {
+                console.error(error)
+            }
         }
 
-        return null;        
+        return null;
     }
 
     return (
@@ -47,6 +92,8 @@ export const AuthProvider = ({children}) => {
             refreshToken,
             setAuth,
             setPersist,
+            signIn,
+            signUp,
             signOut
         }}>
             {children}

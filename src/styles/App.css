@@ -2,35 +2,36 @@ img {
   max-width: 100%;
   height: auto;
 }
-.App {
-  min-height: 100vh;
-  width: 85vw;
-  max-width: 1900px;
-  margin: 0rem auto;
-}
 
-nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  min-height: 90px;
-}
 .navbar-menu-container {
   display: none;
 }
 
+.white-bg{
+  background-color: white;
+}
 .nav-logo-container {
-  text-decoration: none;
-  color: black;
-  font-size: 2.0rem;
-  font-weight: 600;
-  max-width: 140px;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-left: 20px;
+  cursor: pointer;
+}
+.img-bg {
+  background-image: url('../images/fondomain.webp');
+  background-size: cover;
+  background-position: center;
+  padding-top: 10%; /* Adjust as needed */
+}
+
+.estud-container{
+  background-color: #283583;
 }
 
 .navbar-links-container a {
   margin-right: 3rem;
   text-decoration: none;
-  color:  #181717;
+  color:  white;
   font-size: 1.2rem;
   font-weight: 600;
 }
@@ -65,29 +66,30 @@ nav {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  margin-left: 50px;
 }
 .primary-heading {
   font-size: clamp(2rem, 5vw, 4rem);
-  color: #0c1868;
+  color: #ffffff;
   /* line-height: 5rem; */
   max-width: 600px;
 }
 .primary-text {
   font-size: clamp(1rem, 3vw, 1.5rem);
   max-width: 500px;
-  color: #6a6a6a;
+  color: #afbeff;
   margin: 1.5rem 0rem;
 }
 .secondary-button {
   padding: 1rem 2.5rem;
-  background-color: #3243ab;
+  background-color: #ffffff;
   outline: none;
   border: none;
   border-radius: 5rem;
   font-size: 1.1rem;
   cursor: pointer;
   font-weight: 600;
-  color: white;
+  color: #283583;
   transition: 0.2s;
   display: flex;
   align-items: center;
@@ -102,10 +104,12 @@ nav {
 }
 .about-section-container {
   margin-top: 20rem;
+  margin-left: 10px;
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  overflow-y: hidden;
 }
 .about-background-image-container {
   position: absolute;
@@ -143,41 +147,9 @@ nav {
   margin-right: 1rem;
 }
 
-.footer-wrapper {
-  margin: 6rem 0rem;
+.division {
   display: flex;
-  margin-top: 10rem;
 }
-.footer-logo-container {
-  max-width: 110px;
-}
-.footer-icons {
-  margin-top: 2.5rem;
-}
-.footer-icons svg {
-  font-size: 1.5rem;
-  margin-right: 1.25rem;
-  color: #585858;
-}
-
-.footer-section-two {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-}
-.footer-section-columns {
-  display: flex;
-  flex-direction: column;
-  min-width: 190px;
-}
-.footer-section-columns span {
-  margin: 0.25rem 0rem;
-  font-weight: 600;
-  color: #4c4c4c;
-  cursor: pointer;
-}
-
-
 /* CSS de las tarjetas de JOB */
 
 .CardContainer1 {
@@ -224,11 +196,6 @@ nav {
   display: flex;
 }
 
-.col {
-  flex: 0.4;
-  padding: 15px;
-}
-
 .userPFP {
   max-width: 100%;
   height: 100px; /* Maintain aspect ratio */
@@ -252,9 +219,83 @@ nav {
   width: 80%;
 }
 
+.page-container-2 {
+  margin: 20px 80px;
+  
+}
+/*-- Para la matriz de flipcards --*/
+.page-container {
+  display:table;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding: 20px;
+  margin: 50px 80px;
+}
 
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacio entre las tarjetas verticalmente */
+  padding: 15px;
+}
 
+.secondary-heading {
+  margin: 10px auto;
+  font-size: 40px;
+  font-weight: bold;
+  color: #222;
+  text-align: center;
+}
 
+.secondary-text {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #666;
+  margin-left: 8%;
+  margin-right: 8%;
+  margin-top: 4vh;
+  margin-bottom: 4vh;
+}
+
+.grid-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: auto;
+  width: 90%;
+}
+
+.grid-container-2 {
+  display: flex;
+  flex-wrap: wrap; /* Keep this for multi-row layout if needed */
+  /* Change these properties: */
+  justify-content: center; /* Align items to the beginning */
+  margin: auto;
+  width: 65%;          /* Set width to fit content if needed */
+}
+
+.grid-item {
+  margin: 10px;
+}
+
+.center-grid{
+  display: flex;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center;
+}
+
+.player-wrapper {
+  position: relative;
+  padding-top: 56.25%; /* Player ratio: 100 / (1280 / 720) */
+}
+
+.react-player {
+  overflow-y: hidden;
+}
+
+.center{
+  justify-content: center;
+}
 
 @media (max-width: 1000px) {
   .navbar-links-container a {
@@ -270,10 +311,12 @@ nav {
   }
 }
 @media (max-width: 800px) {
+  .division {
+    flex-direction: column;
+  }
   .nav-logo-container {
     text-decoration: none;
     color: white;
-    font-size: 1.6rem;
     font-weight: 600;
     max-width: 140px;
   }
@@ -297,8 +340,9 @@ nav {
   }
   .home-image-section,
   .about-section-image-container {
-    width: 100%;
+    width: 80%;
     max-width: 400px;
+    padding-left: 50px;
   }
   .primary-heading {
     text-align: center;
@@ -318,6 +362,7 @@ nav {
     font-size: 1rem;
     padding: 0.8rem 2rem;
     cursor: pointer;
+    margin-bottom: 15px;
   }
   .about-section-container {
     margin-top: 5rem !important;
@@ -339,16 +384,6 @@ nav {
   }
   .about-section-image-container {
     margin-right: 0rem !important;
-  }
-  .footer-wrapper {
-    flex-direction: column;
-  }
-  .footer-section-two {
-    flex-direction: column;
-    margin-top: 2rem;
-  }
-  .footer-section-columns {
-    margin: 1rem 0rem;
   }
   .App {
     max-width: 95vw;

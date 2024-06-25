@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 import colores from './colores'
-
-import ImgFondo from '../images/FondoSesion3.jpg'
+import ImgFondo from '../images/FondoSesion.jpg'
 
 
 export const Fondo = styled.div`
@@ -49,14 +48,12 @@ export const CContenido = styled.div`
     justify-content: center;
 `;
 
-export const Logo = styled.img`
-    width: 140px;
-    margin: 5px auto;
-
-    @media (max-width: 550px) { 
-        margin: 0px auto 5px auto;
-        width: 100px; 
-    }
+export const Logo = styled.article`
+    margin: auto;
+    margin-bottom: 20px;
+    color: #fff;
+    font-size: 4rem;
+    font-weight: bold;
 `;
 
 export const Formulario = styled.form`
@@ -70,6 +67,14 @@ export const Formulario = styled.form`
         font-weight: 700;
         font-size: 1.1rem;
         margin-right: 10px;
+    }
+
+    hr {
+        width: 80%;
+        height: 0;
+        border: medium none;
+        border-top: 1px dashed ${colores.celeste} !important;
+        margin: 10px auto;
     }
 
     .offscreen { display: none; }
@@ -125,7 +130,7 @@ export const Boton = styled.button`
     cursor: pointer;
     transition: all 0.5s ease;
 
-    &:hover { background-color: ${colores.claro}; }
+    &:hover { color: ${colores.claro}; }
 
     @media (max-width: 550px) {
         width: 160px;
@@ -160,5 +165,17 @@ export const CError = styled.article`
             margin-left: -25px;
             margin-bottom: 2px;
         }
+    }
+`
+
+export const CFooter = styled.article`
+    display: flex;
+    align-items: center;
+    justify-content: ${props => (props.$orden ? "space-between" : "end")};
+    
+    a {
+        color: ${colores.celeste};
+        text-decoration: underline;
+        opacity: 0.9;
     }
 `

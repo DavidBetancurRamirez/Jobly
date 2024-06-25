@@ -1,35 +1,50 @@
-//import logo from './logo.svg';
 import '../styles/App.css';
-import Home from "../elements/Home";
+import Layout from '../elements/Layout';
 import VideoSec from "../elements/VideoSec";
-import Footer from "../elements/Footer"
-import JobContainer from '../elements/JobContainer';
-import useAuth from '../hooks/useAuth';
-import { useNavigate } from 'react-router-dom'
+import Contadores from '../elements/Contadores';
+import { BtnInfo } from './Empresa/Empresa';
+import { FiArrowRight } from "react-icons/fi";
 
-function App() {
-  const { auth, signOut } = useAuth()
-  const navigate = useNavigate()
+const App = () => {
+    return (
+        <Layout>
 
-  console.log(auth?.accessToken)
-  
+          <div className="img-bg">
+            <HomeInfo />
+            <VideoSec />
+          </div>
+
+          <BtnInfo />
+
+          <Contadores 
+              estudiantes={5000}
+              empresas={100}
+          />
+        </Layout>
+    )
+}
+
+const HomeInfo = () => {
   return (
-    <div className="App">
-      <div>
-        <p>Username: {auth?.username}</p>
-        <p>AccessToken: {auth?.accessToken}</p>
-        <button onClick={() => {
-          signOut()
-          navigate('/sesion')
-        }}>Logout</button>
-        <button onClick={() => navigate('/sesion')}>Iniciar sesion</button>
+    <div className="home-container">
+      <div className="home-banner-container">
+        <div className="home-text-section">
+          <h1 className="primary-heading">
+            ¡Conecta con oportunidades
+            laborales!
+          </h1>
+          <p className="primary-text">
+            Sabemos que ganas no te faltan, pero conseguir un trabajo ideal no es fácil. Nosotros nos encargamos de conectarte con el lugar donde podrás aprender, experimentar, y generar ingresos extra.
+          </p>
+          <button className="secondary-button">
+            Registrate <FiArrowRight />{" "}
+          </button>
+        </div>
+        <div className="home-image-section">
+        </div>
       </div>
-      <Home/>
-      <JobContainer/>
-      <VideoSec />
-      <Footer/>
     </div>
-  );
+  )
 }
 
 export default App;

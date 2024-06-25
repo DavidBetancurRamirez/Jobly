@@ -11,9 +11,11 @@ const Contenedor = styled.div`
 `
 const LoaderStyle = styled.div`
     width: 50px;
+    height: 50px;
     aspect-ratio: 1;
     display: grid;
     animation: l14 4s infinite;
+    overflow-x: visible;
 
     &::before, &::after {    
         content: "";
@@ -33,6 +35,7 @@ const LoaderStyle = styled.div`
         100%{transform: rotate(1turn)}
     }
 `
+
 
 const Loader = () => {
     return (

@@ -1,17 +1,14 @@
 import './styles/main.css'
 
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import { disableReactDevTools } from '@fvilers/disable-react-devtools';
-
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 import { AuthProvider } from './context/AuthProvider.jsx';
-
-import App from './components/App.jsx';
-import Sesion from './components/Sesion.jsx';
-import Loader from './elements/Loader.jsx';
-import RequiereAuth from './elements/RequiereAuth.jsx';
-import PersistLogin from './elements/PersistLogin.jsx';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import PersistLogin from './components/Usuario/PersistLogin.jsx';
+import { rutasPublicas, rutasProtegidas } from './utils/rutas.jsx';
+import { RequiereAuth, RequiereRole } from './components/Usuario/PagProtegida.jsx';
+import { disableReactDevTools } from '@fvilers/disable-react-devtools';
+import Perfil from './components/Usuario/Perfil.jsx';
 
 // eslint-disable-next-line no-undef
 if (process.env.NODE_ENV === 'production') {
@@ -27,19 +24,35 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             {/* URLs de la app */}
             <BrowserRouter>
                 <Routes>
-                    <Route path='/sesion' element={<Sesion />} />
                     <Route element={<PersistLogin />}>
-                        {/* Rutas publicas */}
-                        <Route path='/' element={<App />} />
-                        <Route path='/unauthorized' element={<div>No esta autorizado</div>} />
+                    
+                        {/* Rutas publicas  */}
+                        {Object.keys(rutasPublicas).map((routeKey, index) => (
+                            <Route
+                                key={index}
+                                path={rutasPublicas[routeKey].path}
+                                element={rutasPublicas[routeKey].element}
+                            />
+                        ))}
 
-                        {/* Rutas protegidas */}
                         <Route element={<RequiereAuth />}>
-                            <Route path='/loader' element={<Loader />} />
+                            <Route 
+                                path='/perfil'
+                                element={<Perfil />}
+                            />
                         </Route>
 
-                        {/* Ruta no encontrada */}
-                        <Route path='*' element={<div>Error 404</div>} />
+                        {/* Rutas protegidas */}
+                        <Route element={<RequiereRole allowedRoles={[0]} />}>
+                            {Object.keys(rutasProtegidas).map((routeKey, index) => (
+                                <Route
+                                    key={index}
+                                    path={rutasProtegidas[routeKey].path}
+                                    element={rutasProtegidas[routeKey].element}
+                                />
+                            ))}
+                        </Route>
+
                     </Route>
                 </Routes>
             </BrowserRouter>
