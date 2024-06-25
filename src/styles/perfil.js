@@ -93,7 +93,6 @@ export const Datos = styled.article`
 `
 export const CInfo = styled.section`
     margin: 20px;
-    width: 100%;
 `
 export const Info = styled.article`
     margin-bottom: 20px;

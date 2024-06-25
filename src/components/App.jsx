@@ -11,7 +11,7 @@ const App = () => {
 
           <div className="img-bg">
             <HomeInfo />
-            {/* <VideoSec /> */}
+            <VideoSec />
           </div>
 
           <BtnInfo />
